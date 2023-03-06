@@ -27,7 +27,7 @@ return new class extends Migration
             $table->integer('seat');
             $table->timestamps();
 
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('category_id')->references('id')->on('category');
         });
     }
 

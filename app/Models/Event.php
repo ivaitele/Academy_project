@@ -19,8 +19,12 @@ class Event extends Model
         'price',
         'category_id',
         'status',
-        'end_date',
         'start_date',
+        'end_date',
+        'location',
+        'duration',
+        'organizer',
+        'additional_info',
         'seat',
     ];
 

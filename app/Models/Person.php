@@ -17,7 +17,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $user_id
  * @property User $user
  * @property int $address_id
- * @property Address $address
  * @property string $created_at
  * @property string $updated_at
  */
@@ -43,10 +42,6 @@ class Person extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function address(): BelongsTo
-    {
-        return $this->belongsTo(Address::class);
-    }
 
     public function orders(): HasMany
     {
