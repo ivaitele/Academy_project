@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container">
-        <h1>Latest Events</h1>
+        <h1>{{$header}}</h1>
 
         <ul>
 

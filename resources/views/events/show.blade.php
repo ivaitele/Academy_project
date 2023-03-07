@@ -117,12 +117,12 @@
                                     <select class="buy__count" name="count">
                                         @foreach(['0', '1','2','3','4','5','6','7','8','9', '10'] as $qty)
 
-                                        <option
-                                            value="{{$qty}}"
-                                            {{$event->count === $qty ? 'selected="selected"' : ''}}
-                                        >
-                                            {{$qty}}
-                                        </option>
+                                            <option
+                                                value="{{$qty}}"
+                                                {{$event->count === $qty ? 'selected="selected"' : ''}}
+                                            >
+                                                {{$qty}}
+                                            </option>
 
                                         @endforeach
 

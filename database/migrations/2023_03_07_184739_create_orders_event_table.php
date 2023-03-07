@@ -15,14 +15,15 @@ return new class extends Migration
     {
         Schema::create('orders_events', function (Blueprint $table) {
             $table->id();
-            $table->integer('order_id');
-            $table->integer('event_id');
-            $table->integer('user_id');
+            $table->unsignedBigInteger('order_id');
+            $table->unsignedBigInteger('event_id');
             $table->string('event_name');
             $table->integer('qty');
             $table->double('price');
-            $table->string('pay_status')->default("Pending");
             $table->timestamps();
+
+            $table->foreign('order_id')->references('id')->on('orders');
+            $table->foreign('event_id')->references('id')->on('events');
         });
     }
 

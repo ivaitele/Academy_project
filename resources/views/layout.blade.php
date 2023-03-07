@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="/css/event.css" />
     <link rel="stylesheet" type="text/css" href="/css/section.css" />
     <link rel="stylesheet" type="text/css" href="/css/table.css" />
+    <link rel="stylesheet" type="text/css" href="/css/ticket.css" />
     <title>Events UI</title>
 </head>
 <body>
@@ -22,14 +23,14 @@
 
             <nav>
                 <ul>
-                    <li><a href="">Home</a></li>
-
-                    <li><a href="{{route('events.list')}}">Events</a></li>
-                    <li><a href="">Categories</a></li>
+                    <li><a href="{{route('events.category', 'concerts')}}">Koncertai</a></li>
+                    <li><a href="{{route('events.category', 'sportai')}}">Sportas</a></li>
+                    <li><a href="{{route('events.category', 'teatrai')}}">Teatras</a></li>
+                    <li><a href="{{route('events.list')}}">All Events</a></li>
 
                     @if ($cart = Session::get('cart'))
                         <li><a
-                                href="{{route('events.cart')}}"
+                                href="{{route('cart.show')}}"
                                 total="{{array_reduce($cart, function($acc, $item) { return $acc + $item; } )}}"
                             >
                                 Cart

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminEventsController;
 use App\Http\Controllers\Admin\AdminUsersController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\IsAdmin;
@@ -31,18 +32,19 @@ Route::post('/register', [AuthController::class, 'onRegister'])->name('auth.onRe
 Route::get('/logout', [AuthController::class, 'onLogout'])->name('auth.logout');
 
 Route::get('/events', [EventsController::class, 'list'])->name('events.list');
-Route::get('/events/{event}', [EventsController::class, 'show'])->name('events.show');
+Route::get('/events/{category:slug}', [EventsController::class, 'category'])->name('events.category');
+Route::get('/event/{event}', [EventsController::class, 'show'])->name('events.show');
 Route::post('/events/{event}/buy', [EventsController::class, 'onBuy'])->name('events.buy');
 
-Route::get('/cart', [EventsController::class, 'cart'])->name('events.cart');
+Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
+Route::post('/cart', [CartController::class, 'onCheckout'])->name('cart.checkout');
 
 Route::get('/user/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
+Route::get('/user/tickets', [UserController::class, 'tickets'])->name('user.tickets');
 Route::get('/user/profile', [UserController::class, 'profile'])->name('user.profile');
 Route::put('/user/profile', [UserController::class, 'update'])->name('user.update');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', IsAdmin::class]], function () {
-
-
     Route::get('/events', [AdminEventsController::class, 'list'])->name('admin.events.list');
     Route::get('/events/add', [AdminEventsController::class, 'create'])->name('admin.event.create');
     Route::post('/events/add', [AdminEventsController::class, 'store'])->name('admin.event.store');
@@ -54,7 +56,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', IsAdmin::class]], fu
     Route::get('/users/add', [AdminUsersController::class, 'create'])->name('admin.users.create');
     Route::get('/users/{user}/edit', [AdminUsersController::class, 'edit'])->name('admin.users.edit');
     Route::put('/users/{user}', [AdminUsersController::class, 'update'])->name('admin.users.update');
-
+    Route::delete('/users/{user}', [AdminUsersController::class, 'destroy'])->name('admin.users.delete');
 });
 
 //Route::get('/dashboard', function () {

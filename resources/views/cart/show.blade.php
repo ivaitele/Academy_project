@@ -49,7 +49,10 @@
 
             <div class="cart-total">
                 @auth
-                <button>Checkout</button>
+                    <form action="{{route('cart.checkout')}}" method="post">
+                        @csrf
+                        <button type="submit">Checkout</button>
+                    </form>
                 @endauth
 
                 @guest

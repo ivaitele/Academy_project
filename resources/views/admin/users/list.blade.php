@@ -39,7 +39,11 @@
                             <td><div class="role-{{$user->role}}">{{$user->role}}</div></td>
                             <td>
                                 <a href="{{route('admin.users.edit', $user->id)}}" class="btn small">Edit</a>
-                                <button class="small secondary">Delete</button>
+                                <form action="{{route('admin.users.delete', $user->id)}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="small secondary">Delete</button>
+                                </form>
                             </td>
                         </tr>
 

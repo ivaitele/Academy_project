@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\BuyRequest;
+use App\Models\Category;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -13,7 +14,15 @@ class EventsController extends Controller
     {
         $events = Event::query()->with(['category'])->get();
 
-        return view('events.list', ['events' => $events]);
+        return view('events.list', ['events' => $events, 'header' => 'Latest events']);
+    }
+
+    public function category(Category $category): View
+    {
+        $events = $category->events;
+        $header = $category->title;
+
+        return view('events.list', ['events' => $events, 'header' => $header]);
     }
 
     public function show(Request $request, Event $event): View
@@ -54,4 +63,5 @@ class EventsController extends Controller
 
         return view ('events.cart', ['cart' => $cart, 'events' => $events]);
     }
+
 }
