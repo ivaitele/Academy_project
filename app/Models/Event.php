@@ -13,6 +13,7 @@ class Event extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'title',
         'detail',
         'venue',
@@ -26,7 +27,8 @@ class Event extends Model
         'duration',
         'organizer',
         'additional_info',
-        'seat',
+        'tickets_available',
+        'tickets_left',
     ];
 
     public function category(): BelongsTo
@@ -45,5 +47,17 @@ class Event extends Model
     {
         return $this->hasMany(File::class, 'model_id', 'id')
             ->where('model_type', Event::class);
+    }
+
+    public function isAvailable() {
+        return !!$this->tickets_left;
+    }
+
+    public function tickets_sold() {
+        return $this->tickets_available - $this->tickets_left;
+    }
+
+    public function tickets_sold_percents() {
+        return ($this->tickets_available - $this->tickets_left) / $this->tickets_available * 100;
     }
 }

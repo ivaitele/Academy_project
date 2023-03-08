@@ -44,6 +44,9 @@ class CartController extends Controller
                 $orderEvent->price = $event->price;
 
                 $orderEvent->save();
+
+                $event->tickets_left = $event->tickets_left - $orderEvent->qty;
+                $event->save();
             }
 
             $request->session()->forget('cart');

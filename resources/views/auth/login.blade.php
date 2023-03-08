@@ -6,7 +6,7 @@
         <div class="center">
             <h1>Login</h1>
 
-            <form class="form" action="{{route('auth.onLogin')}}" method="post">
+            <form class="form" action="{{route('auth.onLogin')}}{{$redirect ? '?redirect='.$redirect : ''}}" method="post">
                 @csrf
 
                 <div class="form__input">

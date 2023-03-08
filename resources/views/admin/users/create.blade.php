@@ -4,7 +4,7 @@
 
 
     <div class="container">
-        <h1>Dashboard</h1>
+        <h1>Users</h1>
         <div class="section">
             @include('users.menu')
 

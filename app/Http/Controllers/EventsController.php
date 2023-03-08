@@ -12,14 +12,26 @@ class EventsController extends Controller
 {
     public function list(): View
     {
-        $events = Event::query()->with(['category'])->get();
+        $events = Event::query()->where('start_date',  '>=',now())->with(['category'])->get();
+
+        return view('events.list', ['events' => $events, 'header' => 'Latest events']);
+    }
+
+    public function archive(): View
+    {
+        $events = Event::query()->where('start_date',  '<',now())->with(['category'])->get();
 
         return view('events.list', ['events' => $events, 'header' => 'Latest events']);
     }
 
     public function category(Category $category): View
     {
-        $events = $category->events;
+        $events = Event::query()
+            ->where('category_id',$category->id)
+            ->where('start_date',  '>=',now())
+            ->with(['category'])
+            ->get();
+
         $header = $category->title;
 
         return view('events.list', ['events' => $events, 'header' => $header]);

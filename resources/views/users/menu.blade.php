@@ -15,7 +15,7 @@
         </ul>
     </div>
 
-    @if (Auth::user()?->role === 'admin')
+    @if (Auth::user()?->isAdmin())
 
     <div class="section__aside__box --admin">
         <h3>Admin</h3>
@@ -29,8 +29,24 @@
             <li class="{{$active == 'profile' ? 'active' : ''}}">
                 <a href="{{route('user.profile')}}">Bookings</a>
             </li>
+            <li class="{{$active == 'categories' ? 'active' : ''}}">
+                <a href="{{route('categories.index')}}">Categories</a>
+            </li>
         </ul>
     </div>
+
+    @endif
+
+    @if (Auth::user()?->isOrganizer())
+
+        <div class="section__aside__box --organizer">
+            <h3>Organizer</h3>
+            <ul class="section__aside__nav">
+                <li class="{{$active == 'events' ? 'active' : ''}}">
+                    <a href="{{route('organizer.events.list')}}">Events</a>
+                </li>
+            </ul>
+        </div>
 
     @endif
 </div>

@@ -21,7 +21,7 @@ use Illuminate\Support\Carbon;
  */
 class File extends Model
 {
-    public const TYPES_IMAGE    = ['jpg', 'jpeg', 'png', 'gif', 'svg'];
+    public const TYPES_IMAGE    = ['jpg', 'jpeg', 'png', 'gif', 'svg','jfif'];
     public const TYPES_DOCUMENT = ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'txt', 'csv', 'rtf', 'odt'];
     public const TYPES_ARCHIVE  = ['zip', 'rar', '7z', 'tar', 'gz', 'tgz', 'bz2', 'tbz2', 'xz', 'txz', 'iso', 'dmg'];
     public const TYPES_AUDIO    = ['mp3', 'wav', 'ogg', 'wma', 'aac', 'flac', 'alac'];

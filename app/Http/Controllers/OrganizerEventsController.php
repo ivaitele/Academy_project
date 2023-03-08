@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EventRequest;
 use App\Managers\FileManager;
 use App\Models\Event;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
-class AdminEventsController extends Controller
+class OrganizerEventsController extends Controller
 {
     public function __construct(protected FileManager $fileManager)
     {
@@ -16,7 +17,8 @@ class AdminEventsController extends Controller
 
     public function list(): View
     {
-        $events = Event::query()->with(['category'])->get();
+        $user_id = Auth::user()->id;
+        $events = Event::query()->where('user_id', $user_id)->with(['category'])->get();
 
         return view('admin.events.list', ['active' => 'events', 'events' => $events]);
     }
@@ -36,12 +38,14 @@ class AdminEventsController extends Controller
     public function store(EventRequest $request)
     {
         $event = Event::create($request->all());
+        $event->user_id = Auth::user()->id;
+
         $file = $this->fileManager->storeFile($request, 'image','images/event');
         // Ši kodo dalis atsakinga uz paveiksliuko isaugojima produkto lenteleje
         $event->image = $file->url;
         $event->save();
 
-        return redirect()->route('admin.events.list', $event);
+        return redirect()->route('organizer.events.list', $event);
     }
 
     public function edit(Event $event)
@@ -63,12 +67,12 @@ class AdminEventsController extends Controller
 
         $event->save();
 
-        return redirect()->route('admin.events.list');
+        return redirect()->route('organizer.events.list');
     }
 
     public function destroy(Event $event)
     {
         $event->delete();
-        return redirect()->route('admin.events.list');
+        return redirect()->route('organizer.events.list');
     }
 }

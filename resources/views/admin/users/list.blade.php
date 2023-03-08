@@ -4,7 +4,7 @@
 
 
     <div class="container">
-        <h1>Dashboard</h1>
+        <h1>Users</h1>
         <div class="section">
             @include('users.menu')
 
@@ -37,13 +37,15 @@
                             </td>
                             <td>{{$user->email_verified_at ? 'Yes': 'No'}}</td>
                             <td><div class="role-{{$user->role}}">{{$user->role}}</div></td>
-                            <td>
-                                <a href="{{route('admin.users.edit', $user->id)}}" class="btn small">Edit</a>
-                                <form action="{{route('admin.users.delete', $user->id)}}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="small secondary">Delete</button>
-                                </form>
+                            <td class="action">
+                                <div>
+                                    <a href="{{route('admin.users.edit', $user->id)}}" class="btn small">Edit</a>
+                                    <form action="{{route('admin.users.delete', $user->id)}}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="small secondary">Delete</button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
 

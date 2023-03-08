@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/css/section.css" />
     <link rel="stylesheet" type="text/css" href="/css/table.css" />
     <link rel="stylesheet" type="text/css" href="/css/ticket.css" />
+    <link rel="stylesheet" type="text/css" href="/css/progress.css" />
     <title>Events UI</title>
 </head>
 <body>
@@ -23,15 +24,11 @@
 
             <nav>
                 <ul>
-                    <li><a href="{{route('events.category', 'concerts')}}">Koncertai</a></li>
-                    <li><a href="{{route('events.category', 'sportai')}}">Sportas</a></li>
-                    <li><a href="{{route('events.category', 'teatrai')}}">Teatras</a></li>
-                    <li><a href="{{route('events.list')}}">All Events</a></li>
+                    <x-categories-header />
 
                     @if ($cart = Session::get('cart'))
-                        <li><a
-                                href="{{route('cart.show')}}"
-                                total="{{array_reduce($cart, function($acc, $item) { return $acc + $item; } )}}"
+                        <li><a href="{{route('cart.show')}}"
+                               total="{{array_reduce($cart, function($acc, $item) { return $acc + $item; } )}}"
                             >
                                 Cart
                             </a>
@@ -56,6 +53,11 @@
 
                                 <ul class="user-menu__nav">
                                     <li><a href="{{route('user.dashboard')}}">Dashboard</a></li>
+
+                                    @if (Auth::user()?->isAdmin())
+                                    <li><a href="{{route('admin.events.list')}}">Admin</a></li>
+                                    @endif
+
                                     <li><a href="/logout">Logout</a></li>
                                 </ul>
                             </div>
@@ -98,7 +100,7 @@
                     <li>Last event</li>
                     <li>Events</li>
                     <li>Categories</li>
-                    <li>About Us</li>
+                    <li><a href="{{route('events.archive')}}">Archyvas</a></li>
                     <li>Contacts</li>
                 </ul>
             </div>

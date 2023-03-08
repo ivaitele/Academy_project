@@ -56,7 +56,7 @@
                 @endauth
 
                 @guest
-                    <a class="btn" href="{{route('auth.login')}}">Login to continue</a>
+                    <a class="btn" href="{{route('auth.login')}}?redirect=cart.show">Login to continue</a>
                 @endguest
             </div>
         </div>

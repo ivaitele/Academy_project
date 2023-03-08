@@ -4,14 +4,14 @@
 
 
     <div class="container">
-        <h1>Dashboard</h1>
+        <h1>Events</h1>
         <div class="section">
             @include('users.menu')
 
             <div class="section__article">
                 <h3>Edit event</h3>
 
-                <form class="form" action="{{route('admin.event.update', $event)}}" method="post" enctype="multipart/form-data">
+                <form class="form" action="{{route(Auth::user()->role.'.event.update', $event)}}" method="post" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                     <div class="form__input">
@@ -38,10 +38,12 @@
                         <label>Duration</label>
                         <input type="text" name="duration" value="{{$event->duration}}" />
                     </div>
+
                     <div class="form__input">
                         <label>Category</label>
-                        <input type="text" name="category_id" value="{{$event->category_id}}" />
+                        <x-categories-select :selected="$event->category_id" />
                     </div>
+
                     <div class="form__input">
                         <label>Status</label>
                         <input type="text" name="status" value="{{$event->status}}" />
@@ -58,17 +60,25 @@
                         <label>Location</label>
                         <input type="text" name="location" value="{{$event->location}}" />
                     </div>
+
+                    @if (Auth::user()?->isAdmin())
                     <div class="form__input">
                         <label>Organizer</label>
-                        <input type="text" name="organizer" value="{{$event->organizer}}" />
+                        <x-organizer-select :selected="$event->user_id" />
                     </div>
+                    @endif
+
                     <div class="form__input">
                         <label>Additional info</label>
                         <textarea rows="7" name="additional_info">{{$event->additional_info}}</textarea>
                     </div>
                     <div class="form__input">
-                        <label>Seats</label>
-                        <input type="text" name="seat" value="{{$event->seat}}" />
+                        <label>Tickets available</label>
+                        <input type="text" name="tickets_available" value="{{$event->tickets_available}}" />
+                    </div>
+                    <div class="form__input">
+                        <label>Tickets left</label>
+                        <input type="text" name="tickets_left" value="{{$event->tickets_left}}" />
                     </div>
                     <div class="form__action">
                         <button type="submit">Update</button>

@@ -14,9 +14,9 @@ use Illuminate\View\View;
 class AuthController extends Controller
 {
 
-    public function login(): View
+    public function login(Request $request): View
     {
-        return view('auth.login');
+        return view('auth.login', ['redirect' => $request->redirect]);
     }
 
     public function onLogin(LoginRequest $request): RedirectResponse
@@ -26,7 +26,8 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->route('events.list');
+        $redirect = $request->redirect ?? 'events.list';
+        return redirect()->route($redirect);
     }
 
     public function onLogout(Request $request): RedirectResponse

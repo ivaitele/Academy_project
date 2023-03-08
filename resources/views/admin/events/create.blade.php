@@ -4,14 +4,14 @@
 
 
     <div class="container">
-        <h1>Dashboard</h1>
+        <h1>Events</h1>
         <div class="section">
             @include('users.menu')
 
             <div class="section__article">
                 <h3>New event</h3>
 
-                <form class="form" action="{{route('admin.event.store')}}" method="post" enctype="multipart/form-data">
+                <form class="form" action="{{route(Auth::user()->role.'.event.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form__input">
                         <label>Title</label>
@@ -57,17 +57,24 @@
                         <label>Location</label>
                         <input type="text" name="location" value="{{old('location')}}" />
                     </div>
-                    <div class="form__input">
-                        <label>Organizer</label>
-                        <input type="text" name="organizer" value="{{old('organizer')}}" />
-                    </div>
+                    @if (Auth::user()?->isAdmin())
+                        <div class="form__input">
+                            <label>Organizer</label>
+                            <x-organizer-select :selected="old('user_id')" />
+                        </div>
+                    @endif
+
                     <div class="form__input">
                         <label>Additional info</label>
                         <textarea name="additional_info">{{old('additional_info')}}</textarea>
                     </div>
                     <div class="form__input">
-                        <label>Seats</label>
-                        <input type="text" name="seat" value="{{old('seat')}}" />
+                        <label>Tickets available</label>
+                        <input type="text" name="tickets_available" value="{{old('tickets_available')}}" />
+                    </div>
+                    <div class="form__input">
+                        <label>Tickets left</label>
+                        <input type="text" name="tickets_left" value="{{old('tickets_left')}}" />
                     </div>
                     <div class="form__action">
                         <button type="submit">Create</button>
