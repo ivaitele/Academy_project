@@ -47,6 +47,8 @@
                 Total: <span>${{$orderTotal}}</span>
             </div>
 
+            @if ($cart)
+
             <div class="cart-total">
                 @auth
                     <form action="{{route('cart.checkout')}}" method="post">
@@ -59,6 +61,8 @@
                     <a class="btn" href="{{route('auth.login')}}?redirect=cart.show">Login to continue</a>
                 @endguest
             </div>
+
+            @endif
         </div>
     </div>
 @endsection

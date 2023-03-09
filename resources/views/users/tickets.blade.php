@@ -10,7 +10,6 @@
             @include('users.menu')
 
             <div class="section__article blank">
-                <div id="hello">HELLO</div>
                 @foreach($orders as $order)
                     <div class="box">
                         <h4>Order: {{$order->id}}</h4>
