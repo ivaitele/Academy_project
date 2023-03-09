@@ -15,6 +15,7 @@
 
                         <div class="section__info">
                             <h2>{{$event->title}}</h2>
+
                             <div class="progress" style="--done: {{$event->tickets_sold_percents()}}%">
                                 <div class="progress__line"></div>
                                 <div class="progress__label">{{$event->tickets_sold()}} / {{$event->tickets_available}} sold</div>
@@ -74,12 +75,12 @@
                         <h3>Svarbi informacija</h3>
 
                         <ul>
-                            <li><b>Renginio trukmė:</b>{{$event->duration}}</li>
-                            <li><b>Renginio tipas:</b>{{$event->category->title}}</li>
-                            <li><b>Organizatorius</b> {{$event->organizer}}</li>
-                            <li><b>Status:</b>{{$event->status}}</li>
-                            <li><b>Vietos visos:</b>{{$event->tickets_available}}</li>
-                            <li><b>Vietos likusios:</b>{{$event->tickets_left}}</li>
+                            <li><b>Renginio trukmė:</b> {{$event->duration}}</li>
+                            <li><b>Renginio tipas:</b> {{$event->category->title}}</li>
+                            <li><b>Organizatorius:</b> {{$event->organizer}}</li>
+                            <li><b>Status:</b> {{$event->status}}</li>
+                            <li><b>Vietos visos:</b> {{$event->tickets_available}}</li>
+                            <li><b>Vietos likusios:</b> {{$event->tickets_left}}</li>
                         </ul>
                     </div>
 

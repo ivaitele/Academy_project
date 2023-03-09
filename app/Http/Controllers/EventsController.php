@@ -21,7 +21,7 @@ class EventsController extends Controller
     {
         $events = Event::query()->where('start_date',  '<',now())->with(['category'])->get();
 
-        return view('events.list', ['events' => $events, 'header' => 'Latest events']);
+        return view('events.list', ['events' => $events, 'header' => 'Past events']);
     }
 
     public function category(Category $category): View

@@ -37,13 +37,13 @@ class OrganizerEventsController extends Controller
 
     public function store(EventRequest $request)
     {
-        $event = Event::create($request->all());
-        $event->user_id = Auth::user()->id;
-
         $file = $this->fileManager->storeFile($request, 'image','images/event');
-        // Ši kodo dalis atsakinga uz paveiksliuko isaugojima produkto lenteleje
-        $event->image = $file->url;
-        $event->save();
+
+        $data = $request->all();
+        $data['user_id'] = Auth::user()->id;
+        $data['image'] = $file->url;
+
+        $event = Event::create($data);
 
         return redirect()->route('organizer.events.list', $event);
     }

@@ -49,15 +49,18 @@ class Event extends Model
             ->where('model_type', Event::class);
     }
 
-    public function isAvailable() {
+    public function isAvailable()
+    {
         return !!$this->tickets_left;
     }
 
-    public function tickets_sold() {
+    public function tickets_sold()
+    {
         return $this->tickets_available - $this->tickets_left;
     }
 
-    public function tickets_sold_percents() {
+    public function tickets_sold_percents()
+    {
         return ($this->tickets_available - $this->tickets_left) / $this->tickets_available * 100;
     }
 }

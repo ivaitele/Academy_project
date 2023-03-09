@@ -30,7 +30,6 @@
                                     <div class="progress__line"></div>
                                     <div class="progress__label">{{$event->tickets_sold()}} / {{$event->tickets_available}} sold</div>
                                 </div>
-
                                 <div class="time with-icon">
                                     <x-icons.time />
                                     {{$event->start_date}}

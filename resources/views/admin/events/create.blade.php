@@ -39,7 +39,7 @@
                     </div>
                     <div class="form__input">
                         <label>Category</label>
-                        <input type="text" name="category_id" value="{{old('category_id')}}" />
+                        <x-categories-select :selected="old('category_id')" />
                     </div>
                     <div class="form__input">
                         <label>Status</label>

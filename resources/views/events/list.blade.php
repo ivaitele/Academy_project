@@ -20,7 +20,7 @@
 
                     <div class="time with-icon">
                         <x-icons.time />
-                        Pn 2023-06-09 20:00</div>
+                        {{$event->start_date}}</div>
                     <div class="location with-icon">
                         <x-icons.location />
                         {{$event->venue}}

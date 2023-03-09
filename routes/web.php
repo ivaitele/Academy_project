@@ -48,6 +48,8 @@ Route::get('/user/tickets', [UserController::class, 'tickets'])->name('user.tick
 Route::get('/user/profile', [UserController::class, 'profile'])->name('user.profile');
 Route::put('/user/profile', [UserController::class, 'update'])->name('user.update');
 
+Route::get('/ticket/{code}', [CartController::class, 'ticket'])->name('cart.ticket');
+
 Route::group(['prefix' => 'organizer', 'middleware' => ['auth', IsOrganizer::class]], function () {
     Route::get('/events', [OrganizerEventsController::class, 'list'])->name('organizer.events.list');
     Route::get('/events/add', [OrganizerEventsController::class, 'create'])->name('organizer.event.create');

@@ -28,12 +28,12 @@
                                 <h4>{{$category->title}}</h4>
                                 <div>Category: {{$category->summary}}</div>
 
-                                <div>
-                                    <a class="btn" href="{{route('categories.edit', $category)}}">Edit</a>
+                                <div class="price with-icon">
+                                    <a class="btn small" href="{{route('categories.edit', $category)}}">Edit</a>
                                     <form action="{{route('categories.destroy', $category->id)}}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                    <button class="secondary">Delete</button>
+                                    <button class="secondary small">Delete</button>
                                     </form>
                                 </div>
                             </div>

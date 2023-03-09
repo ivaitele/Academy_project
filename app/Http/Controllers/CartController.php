@@ -9,6 +9,7 @@ use App\Models\OrdersEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Ramsey\Uuid\Uuid;
 
 class CartController extends Controller
 {
@@ -42,6 +43,7 @@ class CartController extends Controller
                 $orderEvent->event_name = $event->title;
                 $orderEvent->qty = intval($cart[$event->id]);
                 $orderEvent->price = $event->price;
+                $orderEvent->code = Uuid::uuid4();
 
                 $orderEvent->save();
 
@@ -53,5 +55,11 @@ class CartController extends Controller
         }
 
         return redirect()->route('user.tickets');
+    }
+
+    public function ticket($request) {
+        $ticket = OrdersEvent::query()->where('code', $request)->first();
+
+        return view ('cart.ticket', ['ticket' => $ticket]);
     }
 }
