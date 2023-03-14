@@ -6,14 +6,14 @@
 
     <div class="container section">
         <div class="section__article">
-            <h1>Your cart</h1>
+            <h1>Tavo krepšelis</h1>
 
             <table>
                 <thead>
                 <tr>
-                    <th>Title</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
+                    <th>Pavadinimas</th>
+                    <th>Kiekis</th>
+                    <th>Kaina</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -32,9 +32,9 @@
                         </td>
 
                         <td width="100">
-                            <form action="{{route('events.buy', $event->id)}}" method="post">
+                            <form action="{{route('events.buy', $event->id)}}?redirect=cart.show" method="post">
                                 @csrf
-                                <button type="submit" class="small secondary">Remove</button>
+                                <button type="submit" class="small secondary">Panaikinti</button>
                             </form>
                         </td>
                     </tr>
@@ -44,7 +44,7 @@
             </table>
 
             <div class="cart-total">
-                Total: <span>${{$orderTotal}}</span>
+                Viso: <span>${{$orderTotal}}</span>
             </div>
 
             @if ($cart)
@@ -53,7 +53,7 @@
                 @auth
                     <form action="{{route('cart.checkout')}}" method="post">
                         @csrf
-                        <button type="submit">Checkout</button>
+                        <button type="submit">Apmokėti</button>
                     </form>
                 @endauth
 

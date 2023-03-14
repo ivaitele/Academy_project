@@ -20,7 +20,7 @@ class AdminCategoriesController extends Controller
 
 //        dd($categories);
 
-        return view('admin.categories.list', ['active'=> 'categories', 'categories' => $categories]);
+        return view('admin.categories.index', ['active'=> 'categories', 'categories' => $categories]);
     }
 
     public function store(CategoryRequest $request)

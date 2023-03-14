@@ -38,20 +38,21 @@ Route::get('/events', [EventsController::class, 'list'])->name('events.list');
 Route::get('/archive', [EventsController::class, 'archive'])->name('events.archive');
 Route::get('/events/{category:slug}', [EventsController::class, 'category'])->name('events.category');
 Route::get('/event/{event}', [EventsController::class, 'show'])->name('events.show');
-Route::post('/events/{event}/buy', [EventsController::class, 'onBuy'])->name('events.buy');
+Route::post('/events/{event}/buy', [EventsController::class, 'add_to_cart'])->name('events.buy');
 
 Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
 Route::post('/cart', [CartController::class, 'onCheckout'])->name('cart.checkout');
+
+Route::get('/ticket/{code}', [CartController::class, 'ticket'])->name('cart.ticket');
 
 Route::get('/user/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
 Route::get('/user/tickets', [UserController::class, 'tickets'])->name('user.tickets');
 Route::get('/user/profile', [UserController::class, 'profile'])->name('user.profile');
 Route::put('/user/profile', [UserController::class, 'update'])->name('user.update');
 
-Route::get('/ticket/{code}', [CartController::class, 'ticket'])->name('cart.ticket');
 
 Route::group(['prefix' => 'organizer', 'middleware' => ['auth', IsOrganizer::class]], function () {
-    Route::get('/events', [OrganizerEventsController::class, 'list'])->name('organizer.events.list');
+    Route::get('/events', [OrganizerEventsController::class, 'index'])->name('organizer.events.index');
     Route::get('/events/add', [OrganizerEventsController::class, 'create'])->name('organizer.event.create');
     Route::post('/events/add', [OrganizerEventsController::class, 'store'])->name('organizer.event.store');
     Route::get('/events/{event}', [OrganizerEventsController::class, 'show'])->name('organizer.event.show');
@@ -60,19 +61,23 @@ Route::group(['prefix' => 'organizer', 'middleware' => ['auth', IsOrganizer::cla
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', IsAdmin::class]], function () {
-    Route::get('/events', [AdminEventsController::class, 'list'])->name('admin.events.list');
+    Route::get('/events', [AdminEventsController::class, 'index'])->name('admin.events.index');
     Route::get('/events/add', [AdminEventsController::class, 'create'])->name('admin.event.create');
     Route::post('/events/add', [AdminEventsController::class, 'store'])->name('admin.event.store');
     Route::get('/events/{event}', [AdminEventsController::class, 'show'])->name('admin.event.show');
     Route::get('/events/{event}/edit', [AdminEventsController::class, 'edit'])->name('admin.event.edit');
     Route::put('/events/{event}', [AdminEventsController::class, 'update'])->name('admin.event.update');
 
-    Route::get('/users', [AdminUsersController::class, 'list'])->name('admin.users.list');
+    Route::get('/users', [AdminUsersController::class, 'index'])->name('admin.users.index');
     Route::post('/users', [AdminUsersController::class, 'store'])->name('admin.users.store');
     Route::get('/users/add', [AdminUsersController::class, 'create'])->name('admin.users.create');
     Route::get('/users/{user}/edit', [AdminUsersController::class, 'edit'])->name('admin.users.edit');
     Route::put('/users/{user}', [AdminUsersController::class, 'update'])->name('admin.users.update');
     Route::delete('/users/{user}', [AdminUsersController::class, 'destroy'])->name('admin.users.delete');
+
+    Route::resources([
+        'categories'   => AdminCategoriesController::class,
+    ]);
 
 //    Route::get('/categories', [AdminCategoriesController::class, 'list'])->name('admin.category.list');
 //    Route::post('/categories', [AdminCategoriesController::class, 'store'])->name('admin.category.store');
@@ -81,9 +86,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', IsAdmin::class]], fu
 //    Route::get('/categories/{category}', [AdminCategoriesController::class, 'update'])->name('admin.category.update');
 //    Route::delete('/categories/{category}', [AdminCategoriesController::class, 'destroy'])->name('admin.category.delete');
 
-    Route::resources([
-        'categories'   => AdminCategoriesController::class,
-    ]);
 });
 
 //Route::get('/dashboard', function () {

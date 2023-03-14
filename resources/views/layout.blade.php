@@ -11,7 +11,6 @@
     <link rel="stylesheet" type="text/css" href="/css/section.css" />
     <link rel="stylesheet" type="text/css" href="/css/table.css" />
     <link rel="stylesheet" type="text/css" href="/css/ticket.css" />
-    <link rel="stylesheet" type="text/css" href="/css/progress.css" />
     <title>Events UI</title>
 </head>
 <body>
@@ -19,7 +18,7 @@
     <header class="layout__header">
         <div class="container">
             <div>
-                <img src="/assets/logo.png" alt="Tickets" />
+                <img src="/assets/logo1.png" alt="Tickets" />
             </div>
 
             <nav>
@@ -27,16 +26,11 @@
                     <x-categories-header />
 
                     @if ($cart = Session::get('cart'))
-                        <li><a href="{{route('cart.show')}}"
-                               total="{{array_reduce($cart, function($acc, $item) { return $acc + $item; } )}}"
-                            >
-                                Cart
-                            </a>
-                        </li>
+                        <li><a href="{{route('cart.show')}}">Krepšelis</a></li>
                     @endif
 
                     @guest
-                    <li><a href="{{route('auth.login')}}">Log In</a></li>
+                        <li><a href="{{route('auth.login')}}">Prisijungti</a></li>
                     @endguest
 
                     @auth
@@ -48,17 +42,17 @@
                                     </svg>
                                 </div>
                                 <div class="user-menu__name" tabindex="0">
-                                    {{Auth::user()->name}}
+                                    {{Auth::user()?->title}}
                                 </div>
 
                                 <ul class="user-menu__nav">
                                     <li><a href="{{route('user.dashboard')}}">Dashboard</a></li>
 
                                     @if (Auth::user()?->isAdmin())
-                                    <li><a href="{{route('admin.events.list')}}">Admin</a></li>
+                                        <li><a href="{{route('admin.events.index')}}">Admin</a></li>
                                     @endif
 
-                                    <li><a href="/logout">Logout</a></li>
+                                    <li><a href="/logout">Atsijungti</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -89,34 +83,32 @@
     <footer class="layout__footer">
         <div class="container">
             <div>
-                <img src="/assets/logo.png" alt="Tickets" />
-                <p>Aorem ipsum dolor sit amet elit sed lum tempor incididunt ut labore el dolore alg minim veniam quis nostrud ncididunt.</p>
+                <img src="/assets/logo1.png" alt="Tickets" />
+                <p>Renginiai ir pramogos</p>
             </div>
 
             <div>
-                <h4>QUICK LINKS</h4>
+                <h4>Nuorodos</h4>
                 <ul>
                     <li>Home</li>
-                    <li>Last event</li>
-                    <li>Events</li>
-                    <li>Categories</li>
+                    <li>Naujausi renginiai</li>
+                    <li>Renginiai</li>
+                    <li>Kategorijos</li>
                     <li><a href="{{route('events.archive')}}">Archyvas</a></li>
-                    <li>Contacts</li>
+                    <li>Kontaktai</li>
                 </ul>
             </div>
 
             <div>
-                <h4>RECENT POSTS</h4>
+                <h4>Naujienos</h4>
             </div>
 
             <div>
-                <h4>SUBSCRIBE</h4>
+                <h4>Prenumeruoti naujienlaiškį</h4>
                 <div class="input">
                     <input placeholder="Your email" />
                     <button>OK</button>
                 </div>
-
-                <h4>FOLLOW US ON</h4>
             </div>
         </div>
     </footer>

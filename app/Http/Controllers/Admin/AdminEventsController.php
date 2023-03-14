@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\EventRequest;
 use App\Managers\FileManager;
 use App\Models\Event;
-use Illuminate\View\View;
+
 
 class AdminEventsController extends Controller
 {
@@ -14,14 +14,14 @@ class AdminEventsController extends Controller
     {
     }
 
-    public function list(): View
+    public function index()
     {
         $events = Event::query()->with(['category'])->get();
 
-        return view('admin.events.list', ['active' => 'events', 'events' => $events]);
+        return view('admin.events.index', ['active' => 'events', 'events' => $events]);
     }
 
-    public function show(Event $event): View
+    public function show(Event $event)
     {
         $active = 'events';
         return view('admin.events.show', compact('event', 'active'));
@@ -42,7 +42,7 @@ class AdminEventsController extends Controller
 
         $event = Event::create($data);
 
-        return redirect()->route('admin.events.list', $event);
+        return redirect()->route('admin.events.index', $event);
     }
 
     public function edit(Event $event)
@@ -64,12 +64,12 @@ class AdminEventsController extends Controller
 
         $event->save();
 
-        return redirect()->route('admin.events.list');
+        return redirect()->route('admin.events.index');
     }
 
     public function destroy(Event $event)
     {
         $event->delete();
-        return redirect()->route('admin.events.list');
+        return redirect()->route('admin.events.index');
     }
 }

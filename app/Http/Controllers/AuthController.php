@@ -46,7 +46,9 @@ class AuthController extends Controller
     public function onRegister(RegisterRequest $request): RedirectResponse
     {
         $user = new User();
-        $user->name = $request->name;
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->title = $request->first_name.' '.$request->last_name;
         $user->email = $request->email;
         $user->role = 'user';
 

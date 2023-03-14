@@ -5,7 +5,7 @@
 
     <div class="container section">
         <div class="section__article">
-            <h1>Your ticket</h1>
+            <h1>Jūsų bilietas</h1>
 
             <x-ticket :ticket="$ticket" />
 

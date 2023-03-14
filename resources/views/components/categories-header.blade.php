@@ -6,4 +6,4 @@ $categories = \App\Models\Category::query()->get();
     <li><a href="{{route('events.category', $category->slug)}}">{{$category->title}}</a></li>
 @endforeach
 
-<li><a href="{{route('events.list')}}">All Events</a></li>
+<li><a href="{{route('events.list')}}">Visi Renginiai</a></li>

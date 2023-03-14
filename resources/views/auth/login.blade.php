@@ -4,26 +4,26 @@
 
     <div class="container">
         <div class="center">
-            <h1>Login</h1>
+            <h1>Prisijungimas</h1>
 
             <form class="form" action="{{route('auth.onLogin')}}{{$redirect ? '?redirect='.$redirect : ''}}" method="post">
                 @csrf
 
                 <div class="form__input">
-                    <label>Email:</label>
+                    <label>El.paštas:</label>
                     <input name="email" />
                 </div>
                 <div class="form__input">
-                    <label>Password:</label>
+                    <label>Slaptažodis:</label>
                     <input name="password" type="password" />
                 </div>
                 <div class="form__action">
-                    <button type="submit">Login</button>
+                    <button type="submit">Prisjungti</button>
                 </div>
 
             </form>
             <div class="center">
-                <h4>Do not have account?</h4>
+                <h4>Neturite paskyros?</h4>
                 <a href="{{route('auth.register')}}">Register</a>
             </div>
         </div>

@@ -15,12 +15,12 @@ class OrganizerEventsController extends Controller
     {
     }
 
-    public function list(): View
+    public function index(): View
     {
         $user_id = Auth::user()->id;
         $events = Event::query()->where('user_id', $user_id)->with(['category'])->get();
 
-        return view('admin.events.list', ['active' => 'events', 'events' => $events]);
+        return view('admin.events.index', ['active' => 'events', 'events' => $events]);
     }
 
     public function show(Event $event): View
@@ -45,7 +45,7 @@ class OrganizerEventsController extends Controller
 
         $event = Event::create($data);
 
-        return redirect()->route('organizer.events.list', $event);
+        return redirect()->route('organizer.events.index', $event);
     }
 
     public function edit(Event $event)
@@ -67,12 +67,12 @@ class OrganizerEventsController extends Controller
 
         $event->save();
 
-        return redirect()->route('organizer.events.list');
+        return redirect()->route('organizer.events.index');
     }
 
     public function destroy(Event $event)
     {
         $event->delete();
-        return redirect()->route('organizer.events.list');
+        return redirect()->route('organizer.events.index');
     }
 }

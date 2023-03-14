@@ -69,7 +69,7 @@
                     @endif
 
                     <div class="form__input">
-                        <label>Additional info</label>
+                        <label>Papildoma informacija</label>
                         <textarea rows="7" name="additional_info">{{$event->additional_info}}</textarea>
                     </div>
                     <div class="form__input">

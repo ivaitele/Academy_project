@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container">
-        <h1>Event info</h1>
+        <h1>Renginio informacija</h1>
 
         <section class="section">
             <article class="section__article">
@@ -46,7 +46,13 @@
                                         @endforeach
 
                                     </select>
+                                    @if(Session::has('success'))
+                                        <div class="alert alert-success">
+                                            {{Session::get('success')}}
+                                        </div>
+                                    @endif
                                 </form>
+
                                 @else
                                     <button disabled >Bilietai parduoti</button>
                                 @endif
@@ -65,11 +71,11 @@
                     <h3>Svarbi informacija</h3>
 
                     <ul>
-                        <li><b>Renginio trukmė:</b>{{$event->duration}}</li>
-                        <li><b>Renginio tipas:</b>{{$event->category->title}}</li>
-                        <li><b>Organizatorius</b> {{$event->organizer}}</li>
-                        <li><b>Status:</b>{{$event->status}}</li>
-                        <li><b>Vietos:</b>{{$event->tickets_left}}</li>
+                        <li><b>Renginio trukmė:</b> {{$event->duration}}</li>
+                        <li><b>Renginio tipas:</b> {{$event->category->title}}</li>
+                        <li><b>Organizatorius:</b> {{$event->user->title}} <br />{{$event->user->address}}</li>
+                        <li><b>Status:</b> {{$event->status}}</li>
+                        <li><b>Vietos:</b> {{$event->tickets_left}}</li>
                     </ul>
                 </div>
 

@@ -13,7 +13,7 @@
         </div>
 
         <div>
-            <div class="price__label">Ticket price</div>
+            <div class="price__label">Bilieto kaina</div>
             <div class="price with-icon">
                 <x-icons.price />
                 {{$ticket->price}}
@@ -25,13 +25,11 @@
     </div>
 
     <div class="ticket__right">
-        <div>Guest</div>
-        <div class="name">{{$ticket->order->user->name}}</div>
-
         <div>{{$ticket->qty}} person{{$ticket->qty > 1 ? 's' : ''}}</div>
-
+        <div class="name">{{$ticket->order->user->title}}</div>
 
         <div class="qr" id="{{$ticket->code}}"></div>
+
         <script type="text/javascript">
             new QRCode(document.getElementById("{{$ticket->code}}"), "http://localhost/ticket/{{$ticket->code}}");
         </script>

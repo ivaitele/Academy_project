@@ -38,7 +38,11 @@ class UserController extends Controller
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $user = Auth::user();
+        $user->title = $request->title ?? $request->first_name .' '. $request->last_name;
         $user->name = $request->name;
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->address = $request->address;
         $user->save();
 
         return redirect()->route('user.profile');

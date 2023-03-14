@@ -41,16 +41,21 @@ class EventsController extends Controller
     {
         $cart = $request->session()->get('cart');
         $event->count = $cart[$event->id] ?? 0;
+
         return view('events.show', ['event' => $event, 'cart' => $cart]);
     }
 
-    public function onBuy(BuyRequest $request, Event $event) {
+    public function add_to_cart(BuyRequest $request, Event $event) {
         $cart = $request->session()->get('cart');
+
+        //jei sesijoj nera sukurto 'cart', sukuriam tuscia masyva
         if (!isset($cart)) {
             $cart = array();
         }
 
         $cart[$event->id] = $request->count;
+
+        //Istrinti viena bilieta jei count=0
         if ($cart[$event->id] == 0) {
             unset($cart[$event->id]);
         }
@@ -63,7 +68,11 @@ class EventsController extends Controller
 
         $request->session()->save();
 
-        return redirect()->route('events.show', $event->id);
+        if ($request->redirect) {
+            return redirect()->route($request->redirect)->with('success', 'Sėkmingai istrinta preke');
+        }
+
+        return redirect()->route('events.show', $event->id)->with('success', 'Sėkmingai įdėta i krepšelį');
     }
 
     public function cart(Request $request) {

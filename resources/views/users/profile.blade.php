@@ -4,7 +4,7 @@
 
 
     <div class="container">
-        <h1>Profile</h1>
+        <h1>Profilis</h1>
         <div class="section">
             @include('users.menu')
 
@@ -14,24 +14,34 @@
                 <form class="form" action="{{route('user.update')}}" method="post">
                     @method('PUT')
                     @csrf
+
+                    @if (Auth::user()?->isOrganizer())
+
                     <div class="form__input">
-                        <label>First name</label>
-                        <input name="name" value="{{Auth::user()->name}}" />
+                        <label>Pavadinims</label>
+                        <input type="text" name="title" value="{{Auth::user()->title}}" />
+                    </div>
+
+                    @endif
+
+                    <div class="form__input">
+                        <label>Vardas</label>
+                        <input type="text" name="first_name" value="{{Auth::user()->first_name}}" />
                     </div>
                     <div class="form__input">
-                        <label>Last name</label>
-                        <input />
+                        <label>Pavardė</label>
+                        <input type="text" name="last_name" value="{{Auth::user()->last_name}}" />
                     </div>
                     <div class="form__input">
-                        <label>Email</label>
-                        <input />
+                        <label>Slaptažodis</label>
+                        <input type="password" name="password" />
                     </div>
                     <div class="form__input">
-                        <label>Password</label>
-                        <input />
+                        <label>Adresas</label>
+                        <input type="text" name="address" value="{{Auth::user()->address}}"/>
                     </div>
                     <div class="form__action">
-                        <button type="submit">Update</button>
+                        <button type="submit">Atnaujinti</button>
                     </div>
                 </form>
             </div>

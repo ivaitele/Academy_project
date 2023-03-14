@@ -7,10 +7,10 @@
                 <a href="{{route('user.dashboard')}}">Dashboard</a>
             </li>
             <li class="{{$active == 'tickets' ? 'active' : ''}}">
-                <a href="{{route('user.tickets')}}">Tickets</a>
+                <a href="{{route('user.tickets')}}">Bilietai</a>
             </li>
             <li class="{{$active == 'profile' ? 'active' : ''}}">
-                <a href="{{route('user.profile')}}">Profile</a>
+                <a href="{{route('user.profile')}}">Profilis</a>
             </li>
         </ul>
     </div>
@@ -21,16 +21,13 @@
         <h3>Admin</h3>
         <ul class="section__aside__nav">
             <li class="{{$active == 'events' ? 'active' : ''}}">
-                <a href="{{route('admin.events.list')}}">Events</a>
+                <a href="{{route('admin.events.index')}}">Renginiai</a>
             </li>
             <li class="{{$active == 'users' ? 'active' : ''}}">
-                <a href="{{route('admin.users.list')}}">Users</a>
-            </li>
-            <li class="{{$active == 'profile' ? 'active' : ''}}">
-                <a href="{{route('user.profile')}}">Bookings</a>
+                <a href="{{route('admin.users.index')}}">Vartotojai</a>
             </li>
             <li class="{{$active == 'categories' ? 'active' : ''}}">
-                <a href="{{route('categories.index')}}">Categories</a>
+                <a href="{{route('categories.index')}}">Kategorijos</a>
             </li>
         </ul>
     </div>
@@ -43,7 +40,7 @@
             <h3>Organizer</h3>
             <ul class="section__aside__nav">
                 <li class="{{$active == 'events' ? 'active' : ''}}">
-                    <a href="{{route('organizer.events.list')}}">Events</a>
+                    <a href="{{route('organizer.events.index')}}">Renginiai</a>
                 </li>
             </ul>
         </div>

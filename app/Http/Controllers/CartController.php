@@ -14,11 +14,12 @@ use Ramsey\Uuid\Uuid;
 class CartController extends Controller
 {
     public function show(Request $request) {
+
         $cart = $request->session()->get('cart');
-        // $card = [id: 5 => qty: '1', id: 7 => qty: '3']
+        // Is sesijos gauname event_id ir quantity
 
         $ids = array_keys($cart ?? []);
-        // $ids = [5, 7]
+        // grazina masyva su event_id $ids = [5, 7]
 
         $events = Event::query()->whereIn('id', $ids)->get();
 
@@ -26,6 +27,7 @@ class CartController extends Controller
     }
 
     public function onCheckout(Request $request) {
+
         $cart = $request->session()->get('cart');
 
         if ($cart) {
@@ -41,7 +43,7 @@ class CartController extends Controller
                 $orderEvent->order_id = $order->id;
                 $orderEvent->event_id = $event->id;
                 $orderEvent->event_name = $event->title;
-                $orderEvent->qty = intval($cart[$event->id]);
+                $orderEvent->qty = $cart[$event->id];
                 $orderEvent->price = $event->price;
                 $orderEvent->code = Uuid::uuid4();
 

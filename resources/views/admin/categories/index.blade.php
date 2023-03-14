@@ -13,7 +13,7 @@
 
                 <div class="section__sub-head">
                     <h3>Categories</h3>
-                    <a class="btn success" href="{{route('categories.create')}}">New Event</a>
+                    <a class="btn success" href="{{route('categories.create')}}">New Category</a>
                 </div>
 
                 <ul>

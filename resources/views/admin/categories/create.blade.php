@@ -11,7 +11,7 @@
             <div class="section__article">
                 <h3>New Category</h3>
 
-                <form class="form" action="{{route('admin.category.store')}}" method="post" enctype="multipart/form-data">
+                <form class="form" action="{{route('admin.categories.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form__input">
                         <label>Title</label>

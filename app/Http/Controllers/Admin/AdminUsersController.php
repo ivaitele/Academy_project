@@ -20,12 +20,12 @@ class AdminUsersController extends Controller
     {
     }
 
-    public function list(): View
+    public function index()
     {
         $users = User::all();
         $active = 'users';
 
-        return view('admin.users.list', compact('users', 'active'));
+        return view('admin.users.index', compact('users', 'active'));
     }
 
 //    public function show(Event $event): View
@@ -33,7 +33,7 @@ class AdminUsersController extends Controller
 //        return view('events.show', ['event' => $event]);
 //    }
 
-    public function create(): View
+    public function create()
     {
         $active = 'users';
         return view('admin.users.create', compact( 'active'));
@@ -42,14 +42,17 @@ class AdminUsersController extends Controller
     public function store(UserRequest $request)
     {
         $user = new User();
-        $user->name = $request->name;
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->title = $request->title ?? $request->first_name.' '.$request->last_name;
+
         $user->email = $request->email;
         $user->role = $request->role;
 
         $user->password = Hash::make($request->password);
 
         $user->save();
-        return redirect()->route('admin.users.list');
+        return redirect()->route('admin.users.index');
     }
 
     public function edit(User $user)
@@ -64,7 +67,9 @@ class AdminUsersController extends Controller
             $user->password = Hash::make($request->password);
         }
 
-        $user->name = $request->name;
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->title = $request->title ?? $request->first_name.' '.$request->last_name;
 
         if (Auth::user()->id !== $user->id) {
             $user->role = $request->role;
@@ -72,12 +77,12 @@ class AdminUsersController extends Controller
 
         $user->save();
 
-        return redirect()->route('admin.users.list');
+        return redirect()->route('admin.users.index');
     }
 
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('admin.users.list');
+        return redirect()->route('admin.users.index');
     }
 }

@@ -4,36 +4,40 @@
 
     <div class="container">
         <div class="center">
-            <h1>Register</h1>
+            <h1>Registracija</h1>
 
             <form class="form" action="{{route('auth.onRegister')}}" method="post">
                 @csrf
 
                 <div class="form__input">
-                    <label>Name:</label>
-                    <input name="name" value="{{old('name')}}" />
+                    <label>Vardas:</label>
+                    <input name="first_name" value="{{old('first_name')}}" />
                 </div>
                 <div class="form__input">
-                    <label>Email:</label>
+                    <label>Pavardė:</label>
+                    <input name="last_name" value="{{old('last_name')}}" />
+                </div>
+                <div class="form__input">
+                    <label>El.paštas:</label>
                     <input name="email" value="{{old('email')}}" />
                 </div>
                 <div class="form__input">
-                    <label>Password</label>
+                    <label>Slaptažodis</label>
                     <input type="password" name="password" />
                 </div>
 
                 <div class="form__input">
-                    <label>Confirm Password</label>
+                    <label>Slaptažodio patvirtinimas</label>
                     <input type="password" name="password_confirmation" />
                 </div>
                 <div class="form__action">
-                    <button type="submit">Login</button>
+                    <button type="submit">Registruotis</button>
                 </div>
 
             </form>
             <div class="center">
-                <h4>Have account?</h4>
-                <a href="{{route('auth.login')}}">Login</a>
+                <h4>Turite paskyra?</h4>
+                <a href="{{route('auth.login')}}">Prisijungti</a>
             </div>
         </div>
     </div>

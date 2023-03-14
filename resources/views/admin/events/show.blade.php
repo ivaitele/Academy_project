@@ -16,11 +16,6 @@
                         <div class="section__info">
                             <h2>{{$event->title}}</h2>
 
-                            <div class="progress" style="--done: {{$event->tickets_sold_percents()}}%">
-                                <div class="progress__line"></div>
-                                <div class="progress__label">{{$event->tickets_sold()}} / {{$event->tickets_available}} sold</div>
-                            </div>
-
                             <div class="time with-icon">
                                 <x-icons.time />
                                 {{$event->start_date}}
@@ -33,29 +28,7 @@
                                 <x-icons.price />
                                 {{$event->price}}
                             </div>
-                            <div>
-                                <div class="buy">
-                                    <form action="{{route('events.buy', $event->id)}}" method="post">
-                                        @csrf
-                                        <button type="submit">
-                                            {{$event->count ? 'Update' : 'Pirkti bilieta' }}
-                                        </button>
-                                        <select class="buy__count" name="count">
-                                            @foreach(['0', '1','2','3','4','5','6','7','8','9', '10'] as $qty)
 
-                                                <option
-                                                    value="{{$qty}}"
-                                                    {{$event->count === $qty ? 'selected="selected"' : ''}}
-                                                >
-                                                    {{$qty}}
-                                                </option>
-
-                                            @endforeach
-
-                                        </select>
-                                    </form>
-                                </div>
-                            </div>
                         </div>
                     </header>
 
@@ -65,8 +38,7 @@
                 </div>
 
                 <div class="section__aside__box">
-                    <h3>TICKETS</h3>
-
+                    <h3>BILIETAI</h3>
                     <x-tickets :event_id="$event->id" />
                 </div>
 

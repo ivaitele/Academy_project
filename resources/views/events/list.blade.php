@@ -31,9 +31,9 @@
                     </div>
 
                     <div class="event__action">
-                        <a class="btn" href="{{route('events.show', $event->id)}}">Read more</a>
+                        <a class="btn" href="{{route('events.show', $event->id)}}">Detaliau</a>
                         @if (!$event->isAvailable())
-                            <span class="warning">No more tickets!</span>
+                            <span class="warning">Bilietų nėra</span>
                         @endif
                     </div>
                 </div>

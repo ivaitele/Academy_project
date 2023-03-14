@@ -1,4 +1,4 @@
-@props(['selected' => 2])
+@props(['selected'])
 
 @php
 $categories = \App\Models\Category::query()->get();
