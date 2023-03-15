@@ -1,0 +1,21 @@
+@media print {
+  .layout__header,
+  .layout__footer {
+    display: none;
+  }
+  .layout__content {
+    background: none;
+  }
+  .ticket {
+    height: auto;
+  }
+  .ticket__right {
+    color: black;
+  }
+  .ticket__right .name {
+    color: black;
+  }
+  button {
+    display: none;
+  }
+}/*# sourceMappingURL=print.css.map */

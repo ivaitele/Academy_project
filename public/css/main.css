@@ -1,0 +1,135 @@
+:root {
+  --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #dc3545;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #fff;
+  --grey: #6c757d;
+  --grey-dark: #343a40;
+  --grey-light: #f3f4f3;
+  --primary: #007bff;
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #343a40;
+  --header-bg: black;
+  --footer-bg: #222222;
+  --secondary: #e91e63;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 1em;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+img {
+  display: inline-block;
+}
+
+input,
+textarea,
+select {
+  padding: 0.75em 1em;
+  border-radius: 5px;
+  border: solid 1px #ccc;
+  min-width: 300px;
+  resize: vertical;
+  line-height: 1.6;
+  color: var(--grey-dark);
+}
+
+button,
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  text-decoration: none;
+  background: var(--primary);
+  color: white;
+  padding: 1em 2em;
+  border-radius: 3px;
+  border: none;
+}
+button[disabled],
+.btn[disabled] {
+  background: var(--grey);
+}
+button.small,
+.btn.small {
+  font-size: 13px;
+  padding: 0.5em 0.75em;
+}
+button.secondary,
+.btn.secondary {
+  background: var(--secondary);
+}
+button.success,
+.btn.success {
+  background: var(--success);
+}
+button.btn-link,
+.btn.btn-link {
+  padding: 0;
+  background: none;
+  color: currentColor;
+  font-size: inherit;
+  cursor: pointer;
+}
+button.btn-link:hover,
+.btn.btn-link:hover {
+  color: var(--secondary);
+}
+
+h1 {
+  font-size: 32px;
+  text-transform: uppercase;
+  font-weight: 700;
+  position: relative;
+  display: inline-flex;
+  margin-bottom: 2rem;
+}
+h1:before, h1:after {
+  position: absolute;
+  content: "";
+  width: 40px;
+  height: 1px;
+  background: var(--secondary);
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+h1:before {
+  bottom: -10px;
+  margin-left: 15px;
+}/*# sourceMappingURL=main.css.map */

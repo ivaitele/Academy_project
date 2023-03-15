@@ -1,0 +1,136 @@
+.section {
+  display: flex;
+  gap: 1em;
+}
+
+.alert-success {
+    background-color: rgba(227, 253, 235, 1);
+    border-color: rgba(38, 179, 3, 1);
+    color: rgba(60, 118, 61, 1);
+}
+
+.section__article {
+  background: white;
+  flex: 1;
+  padding: 2em;
+  border-radius: 5px;
+}
+.section__article.blank {
+  background: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.section__article .box {
+  background: white;
+  padding: 1em;
+}
+.section__article img {
+  width: 275px;
+  border-radius: 3px;
+}
+.section__aside {
+  width: 300px;
+  color: var(--grey-dark);
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.section__aside h3 {
+  margin: 0;
+  margin-bottom: 2em;
+  color: var(--primary);
+}
+.section__aside li {
+  margin: 0.5em 0;
+}
+.section__aside__box {
+  --color: var(--primary);
+  background: white;
+  padding: 2em 1em;
+  border-radius: 5px;
+}
+.section__aside__box.--admin {
+  --color: var(--secondary);
+}
+.section__aside__box.--organizer {
+  --color: var(--info);
+}
+.section__aside__box h3 {
+  color: var(--color);
+}
+.section__aside__box p {
+  font-size: 0.85em;
+  line-height: 1.6;
+}
+.section__aside__nav li {
+  background: var(--grey-light);
+  border-radius: 5px;
+  margin: 0.5em 0;
+  display: flex;
+  transition: 0.3s;
+}
+.section__aside__nav li a {
+  color: var(--grey-dark);
+  padding: 1em;
+  flex: 1;
+  text-decoration: none;
+}
+.section__aside__nav li:hover {
+  background: #ccc;
+}
+.section__aside__nav li.active {
+  background: var(--color);
+  color: white;
+}
+.section__aside__nav li.active a {
+  color: white;
+}
+.section__header {
+  display: flex;
+  gap: 2em;
+  padding-bottom: 3em;
+}
+.section__sub-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.section__info {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.section__info h2 {
+  flex: 1;
+  margin: 0;
+}
+.section__desc {
+  line-height: 1.8;
+}
+
+.with-icon {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.with-icon svg {
+  width: 2rem;
+  display: block;
+  flex-shrink: 0;
+}
+
+.price {
+  font-size: 45px;
+  color: var(--secondary);
+}
+.price__label {
+  text-transform: uppercase;
+  font-size: 13px;
+  margin-bottom: -10px;
+}
+
+.time {
+  font-weight: 700;
+}/*# sourceMappingURL=section.css.map */

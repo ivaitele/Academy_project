@@ -1,0 +1,123 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.layout__content {
+  flex: 1;
+  background: var(--grey-light);
+}
+.layout__content .container {
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+.layout__header {
+  background: var(--header-bg);
+  color: white;
+}
+.layout__header a {
+  color: white;
+  transition: 0.3s;
+  text-decoration: none;
+}
+.layout__header a:hover {
+  color: var(--secondary);
+  border-bottom: solid 1px var(--secondary);
+}
+.layout__header ul {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+.layout__header img {
+  display: block;
+  height: 50px;
+}
+.layout__header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.layout__footer {
+  background: var(--footer-bg);
+  color: white;
+  padding: 2em 0;
+  font-size: 0.8em;
+}
+.layout__footer .container {
+  display: flex;
+  align-items: flex-start;
+  gap: 2em;
+}
+.layout__footer .container > * {
+  flex: 1;
+}
+
+.user-menu {
+  background-color: var(--grey-dark);
+  display: flex;
+  align-items: center;
+  border-radius: 50vh;
+  padding: 0;
+  position: relative;
+  cursor: pointer;
+}
+.user-menu svg {
+  display: block;
+}
+.user-menu__avatar {
+  background: var(--grey-light);
+  border-radius: 50vh;
+  color: black;
+  padding: 5px;
+}
+.user-menu__name {
+  padding: 0.5em 1em;
+}
+.user-menu .user-menu__nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  background: var(--grey-dark);
+  right: 0;
+  padding: 1em;
+  border: solid 1px var(--grey);
+  flex-direction: column;
+  border-radius: 3px;
+  margin-top: 0.5em;
+}
+.user-menu:focus-within {
+  outline: none;
+  box-shadow: 0 0 3px var(--grey-light);
+}
+.user-menu:focus-within .user-menu__nav {
+  display: flex;
+}
+
+[total] {
+    position: relative;
+}
+[total]:before {
+    content: attr(total);
+    position: absolute;
+    background: var(--secondary);
+    color: white;
+    border-radius: 50vh;
+    font-size: 13px;
+    padding: 2px;
+    font-weight: 500;
+    top: -15px;
+    right: -12px;
+    height: 15px;
+    width: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 3px;
+}
+.warning {
+    color:red;
+}
+
+
+/*# sourceMappingURL=layout.css.map */
