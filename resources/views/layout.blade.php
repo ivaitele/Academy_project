@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/css/section.css" />
     <link rel="stylesheet" type="text/css" href="/css/table.css" />
     <link rel="stylesheet" type="text/css" href="/css/ticket.css" />
+    <link rel="stylesheet" type="text/css" href="/css/print.css" />
     <title>Events UI</title>
 </head>
 <body>
@@ -26,7 +27,10 @@
                     <x-categories-header />
 
                     @if ($cart = Session::get('cart'))
-                        <li><a href="{{route('cart.show')}}">Krepšelis</a></li>
+                        <li><a href="{{route('cart.show')}}"
+                               total="{{array_reduce($cart, function($acc, $item) { return $acc + $item; } )}}"
+                            >Krepšelis</a>
+                        </li>
                     @endif
 
                     @guest
@@ -90,11 +94,9 @@
             <div>
                 <h4>Nuorodos</h4>
                 <ul>
-                    <li>Home</li>
-                    <li>Naujausi renginiai</li>
-                    <li>Renginiai</li>
+                    <li><a href="{{route('events.list')}}" style="color: white;">Naujausi renginiai</a></li>
                     <li>Kategorijos</li>
-                    <li><a href="{{route('events.archive')}}">Archyvas</a></li>
+                    <li><a href="{{route('events.archive')}}" style="color: white;">Archyvas</a></li>
                     <li>Kontaktai</li>
                 </ul>
             </div>

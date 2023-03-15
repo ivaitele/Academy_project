@@ -4,7 +4,7 @@
 
     <div class="container">
         <div class="center">
-            <h1>Prisijungimas</h1>
+            <h1>Prisijungti</h1>
 
             <form class="form" action="{{route('auth.onLogin')}}{{$redirect ? '?redirect='.$redirect : ''}}" method="post">
                 @csrf
@@ -18,13 +18,13 @@
                     <input name="password" type="password" />
                 </div>
                 <div class="form__action">
-                    <button type="submit">Prisjungti</button>
+                    <button type="submit">Prisijungti</button>
                 </div>
 
             </form>
             <div class="center">
                 <h4>Neturite paskyros?</h4>
-                <a href="{{route('auth.register')}}">Register</a>
+                <a href="{{route('auth.register')}}">Registruotis</a>
             </div>
         </div>
     </div>

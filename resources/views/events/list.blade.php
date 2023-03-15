@@ -9,14 +9,14 @@
 
             @foreach($events as $event)
 
-            <li class="event {{$event->isAvailable() ? 'available' : '__not-available'}}">
+            <li class="event">
                 <div class="event__image">
                     <img src="{{$event->image}}" alt="{{$event->title}}" />
                 </div>
 
                 <div class="event__content">
                     <h4>{{$event->title}}</h4>
-                    <div>Category: {{$event->category->title}}</div>
+                    <div>Kategorija: {{$event->category->title}}</div>
 
                     <div class="time with-icon">
                         <x-icons.time />
@@ -31,9 +31,9 @@
                     </div>
 
                     <div class="event__action">
-                        <a class="btn" href="{{route('events.show', $event->id)}}">Detaliau</a>
+                        <a class="btn" href="{{route('events.show', $event->id)}}">Rodyti daugiau</a>
                         @if (!$event->isAvailable())
-                            <span class="warning">Bilietų nėra</span>
+                            <span class="warning"><b>Bilietų nebėra</b></span>
                         @endif
                     </div>
                 </div>

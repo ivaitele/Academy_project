@@ -9,6 +9,7 @@
 
             <x-ticket :ticket="$ticket" />
 
+            <button onclick="print()">Spausdinti</button>
         </div>
     </div>
 @endsection

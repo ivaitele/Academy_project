@@ -14,7 +14,7 @@ class EventsController extends Controller
     {
         $events = Event::query()->where('start_date',  '>=',now())->with(['category'])->get();
 
-        return view('events.list', ['events' => $events, 'header' => 'Latest events']);
+        return view('events.list', ['events' => $events, 'header' => 'Naujausi renginiai']);
     }
 
     public function archive(): View
@@ -52,16 +52,16 @@ class EventsController extends Controller
         if (!isset($cart)) {
             $cart = array();
         }
-
         $cart[$event->id] = $request->count;
 
-        //Istrinti viena bilieta jei count=0
+        //Jei bilietu kiekis yra 0, tai pašalinamas iš krepšelio.
         if ($cart[$event->id] == 0) {
             unset($cart[$event->id]);
         }
-
+        //Atnaujintas krepselis issaugomas sesijoje
         $request->session()->put('cart', $cart);
 
+        //Jei bilietu nebera, krepselis pasalinamas is sesijos
         if (count($cart) === 0) {
             $request->session()->forget('cart');
         }
@@ -78,8 +78,10 @@ class EventsController extends Controller
     public function cart(Request $request) {
         $cart = $request->session()->get('cart');
 
+        //Is sesijos gauto $cart masyvo gaunami visi event_id
         $ids = array_keys($cart ?? []);
 
+        //Gaunami visi renginiai, kurie buvo ideti i krepseli
         $events = Event::query()->whereIn('id', $ids)->get();
 
         return view ('events.cart', ['cart' => $cart, 'events' => $events]);

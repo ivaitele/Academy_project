@@ -31,7 +31,7 @@
                                 <form action="{{route('events.buy', $event->id)}}" method="post">
                                     @csrf
                                     <button type="submit">
-                                        {{$event->count ? 'Update' : 'Pirkti bilieta' }}
+                                        {{$event->count ? 'Atnaujinti' : 'Pirkti bilietą' }}
                                     </button>
                                     <select class="buy__count" name="count">
                                         @foreach(['0', '1','2','3','4','5','6','7','8','9', '10'] as $qty)
@@ -54,7 +54,7 @@
                                 </form>
 
                                 @else
-                                    <button disabled >Bilietai parduoti</button>
+                                    <button disabled>Bilietai parduoti</button>
                                 @endif
                             </div>
                         </div>
@@ -82,6 +82,11 @@
                 <div class="section__aside__box">
                     <h3>Papildoma informacija</h3>
                     <p>{{$event->additional_info}}</p>
+                </div>
+                <div class="section__aside__box">
+                    <h3>Renginio vieta</h3>
+                    <p>{{$event->venue}}</p>
+                    <p>{{$event->location}}</p>
                 </div>
             </aside>
         </section>

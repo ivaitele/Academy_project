@@ -25,13 +25,16 @@
     </div>
 
     <div class="ticket__right">
-        <div>{{$ticket->qty}} person{{$ticket->qty > 1 ? 's' : ''}}</div>
+        <div>{{$ticket->qty}} {{$ticket->qty > 1 ? 'asmenys' : 'asmuo'}}</div>
         <div class="name">{{$ticket->order->user->title}}</div>
 
-        <div class="qr" id="{{$ticket->code}}"></div>
+        @if ($ticket->code)
+        <a href="{{route('cart.ticket', $ticket->code)}}" class="qr" id="{{$ticket->code}}"></a>
 
         <script type="text/javascript">
             new QRCode(document.getElementById("{{$ticket->code}}"), "http://localhost/ticket/{{$ticket->code}}");
         </script>
+
+        @endif
     </div>
 </div>

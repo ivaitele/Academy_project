@@ -18,7 +18,7 @@
                     @if (Auth::user()?->isOrganizer())
 
                     <div class="form__input">
-                        <label>Pavadinims</label>
+                        <label>Pavadinimas</label>
                         <input type="text" name="title" value="{{Auth::user()->title}}" />
                     </div>
 

@@ -1,4 +1,4 @@
-@props(['selected' => 2])
+@props(['selected'])
 
 @php
 $users = \App\Models\User::query()->where('role', 'organizer')->get();

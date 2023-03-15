@@ -8,7 +8,7 @@ $tickets = \App\Models\OrdersEvent::query()->where('event_id', $event_id)->get()
     <thead>
     <tr>
         <th>Vartotojas</th>
-        <th>Laikas</th>
+        <th>Data/laikas</th>
         <th>Kiekis</th>
         <th>Kaina</th>
     </tr>
