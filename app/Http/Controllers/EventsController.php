@@ -12,14 +12,20 @@ class EventsController extends Controller
 {
     public function list(): View
     {
-        $events = Event::query()->where('start_date',  '>=',now())->with(['category'])->get();
+        $events = Event::query()
+            ->where('start_date',  '>=',now())
+            ->with(['category'])
+            ->get();
 
         return view('events.list', ['events' => $events, 'header' => 'Naujausi renginiai']);
     }
 
     public function archive(): View
     {
-        $events = Event::query()->where('start_date',  '<',now())->with(['category'])->get();
+        $events = Event::query()
+            ->where('start_date',  '<',now())
+            ->with(['category'])
+            ->get();
 
         return view('events.list', ['events' => $events, 'header' => 'Past events']);
     }
@@ -45,7 +51,8 @@ class EventsController extends Controller
         return view('events.show', ['event' => $event, 'cart' => $cart]);
     }
 
-    public function add_to_cart(BuyRequest $request, Event $event) {
+    public function add_to_cart(BuyRequest $request, Event $event)
+    {
         $cart = $request->session()->get('cart');
 
         //jei sesijoj nera sukurto 'cart', sukuriam tuscia masyva
@@ -69,13 +76,16 @@ class EventsController extends Controller
         $request->session()->save();
 
         if ($request->redirect) {
-            return redirect()->route($request->redirect)->with('success', 'Sėkmingai istrinta preke');
+            return redirect()->route($request->redirect)
+                ->with('success', 'Sėkmingai istrinta preke');
         }
 
-        return redirect()->route('events.show', $event->id)->with('success', 'Sėkmingai įdėta i krepšelį');
+        return redirect()->route('events.show', $event->id)
+            ->with('success', 'Sėkmingai įdėta i krepšelį');
     }
 
-    public function cart(Request $request) {
+    public function cart(Request $request)
+    {
         $cart = $request->session()->get('cart');
 
         //Is sesijos gauto $cart masyvo gaunami visi event_id

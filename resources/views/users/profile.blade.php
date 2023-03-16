@@ -15,7 +15,7 @@
                     @method('PUT')
                     @csrf
 
-                    @if (Auth::user()?->isOrganizer())
+                    @if (Auth::user()?->isOrganizer() || Auth::user()?->isAdmin())
 
                     <div class="form__input">
                         <label>Pavadinimas</label>

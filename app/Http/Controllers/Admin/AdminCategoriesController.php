@@ -18,8 +18,6 @@ class AdminCategoriesController extends Controller
     {
         $categories = Category::all();
 
-//        dd($categories);
-
         return view('admin.categories.index', ['active'=> 'categories', 'categories' => $categories]);
     }
 

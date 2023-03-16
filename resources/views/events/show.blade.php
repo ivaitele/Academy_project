@@ -24,6 +24,7 @@
                             <x-icons.price />
                             {{$event->price}}
                         </div>
+                        @if ($event->start_date > now())
                         <div>
                             <div class="buy">
                                 @if ($event->tickets_left > 0)
@@ -58,6 +59,7 @@
                                 @endif
                             </div>
                         </div>
+                        @endif
                     </div>
                 </header>
 

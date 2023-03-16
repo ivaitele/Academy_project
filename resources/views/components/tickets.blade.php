@@ -16,7 +16,7 @@ $tickets = \App\Models\OrdersEvent::query()->where('event_id', $event_id)->get()
     <tbody>
     @foreach($tickets as $ticket)
         <tr>
-            <td>{{$ticket->order->user->title}}</td>
+            <td>{{$ticket->order?->user?->title}}</td>
             <td>{{$ticket->order->created_at}}</td>
             <td>{{$ticket->qty}}</td>
             <td>{{$ticket->price}}</td>

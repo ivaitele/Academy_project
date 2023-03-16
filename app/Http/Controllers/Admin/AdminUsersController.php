@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\EventRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Managers\FileManager;
-use App\Models\Event;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
@@ -20,7 +17,7 @@ class AdminUsersController extends Controller
     {
     }
 
-    public function index()
+    public function index(): view
     {
         $users = User::all();
         $active = 'users';

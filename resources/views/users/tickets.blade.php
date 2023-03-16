@@ -12,8 +12,11 @@
             <div class="section__article blank">
                 @foreach($orders as $order)
                     <div class="box">
-                        <h4>Užsakymas {{$order->id}}</h4>
-                        <div>Sukurtas: {{$order->created_at}}</div>
+                        <div>Užsakymas: <b>{{$order->id}}</b></div>
+                        <div>Sukurtas: <b>{{$order->created_at}}</b></div>
+                        <div>Mokejimo metodas: <b>{{$order->payment_method}}</b></div>
+                        <div>Suma: <b>{{$order->grand_total}}</b></div>
+                        <div><b>{{$order->status}}</b></div>
                         @foreach($order->items as $item)
 
                             <x-ticket :ticket="$item" />

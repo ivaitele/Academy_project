@@ -51,7 +51,7 @@
 
             <div class="cart-total">
                 @auth
-                    <form action="{{route('cart.checkout')}}" method="post">
+                    <form action="{{route('cart.payment')}}" method="get">
                         @csrf
                         <button type="submit">Apmokėti</button>
                     </form>
