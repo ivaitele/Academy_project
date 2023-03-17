@@ -5,6 +5,9 @@ table {
 table h4 {
   margin: 0;
 }
+table tr {
+  position: relative;
+}
 table th {
   background: var(--grey-light);
 }
@@ -46,4 +49,25 @@ table .action > div {
 
 .role-organizer {
   background: var(--info);
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.6901960784);
+  inset: 0;
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  color: white;
+  align-items: center;
+  justify-content: center;
+}
+.overlay__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+.overlay h5 {
+  margin: 0.5rem;
+  font-size: 1rem;
 }/*# sourceMappingURL=table.css.map */

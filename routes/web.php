@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminUsersController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\EventsController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrganizerEventsController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\IsAdmin;
@@ -23,9 +24,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/login', [AuthController::class, 'onLogin'])->name('auth.onLogin');
@@ -33,6 +34,8 @@ Route::get('/register', [AuthController::class, 'register'])->name('auth.registe
 Route::post('/register', [AuthController::class, 'onRegister'])->name('auth.onRegister');
 
 Route::get('/logout', [AuthController::class, 'onLogout'])->name('auth.logout');
+
+Route::get('/', HomeController::class)->name('home');
 
 Route::get('/events', [EventsController::class, 'list'])->name('events.list');
 Route::get('/archive', [EventsController::class, 'archive'])->name('events.archive');
@@ -42,6 +45,7 @@ Route::post('/events/{event}/buy', [EventsController::class, 'add_to_cart'])->na
 
 Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
 Route::post('/cart', [CartController::class, 'onCheckout'])->name('cart.checkout');
+Route::get('/cart/payment', [CartController::class, 'payment'])->name('cart.payment');
 
 Route::get('/ticket/{code}', [CartController::class, 'ticket'])->name('cart.ticket');
 
@@ -68,34 +72,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', IsAdmin::class]], fu
     Route::get('/events/{event}/edit', [AdminEventsController::class, 'edit'])->name('admin.event.edit');
     Route::put('/events/{event}', [AdminEventsController::class, 'update'])->name('admin.event.update');
 
-    Route::get('/users', [AdminUsersController::class, 'index'])->name('admin.users.index');
-    Route::post('/users', [AdminUsersController::class, 'store'])->name('admin.users.store');
-    Route::get('/users/add', [AdminUsersController::class, 'create'])->name('admin.users.create');
-    Route::get('/users/{user}/edit', [AdminUsersController::class, 'edit'])->name('admin.users.edit');
-    Route::put('/users/{user}', [AdminUsersController::class, 'update'])->name('admin.users.update');
-    Route::delete('/users/{user}', [AdminUsersController::class, 'destroy'])->name('admin.users.delete');
-
     Route::resources([
         'categories'   => AdminCategoriesController::class,
+        'users' =>  AdminUsersController::class,
     ]);
-
-//    Route::get('/categories', [AdminCategoriesController::class, 'list'])->name('admin.category.list');
-//    Route::post('/categories', [AdminCategoriesController::class, 'store'])->name('admin.category.store');
-//    Route::get('/categories/add', [AdminCategoriesController::class, 'create'])->name('admin.category.create');
-//    Route::get('/categories/{category}/edit', [AdminCategoriesController::class, 'edit'])->name('admin.category.edit');
-//    Route::get('/categories/{category}', [AdminCategoriesController::class, 'update'])->name('admin.category.update');
-//    Route::delete('/categories/{category}', [AdminCategoriesController::class, 'destroy'])->name('admin.category.delete');
 
 });
 
-//Route::get('/dashboard', function () {
-//    return view('dashboard');
-//})->middleware(['auth', 'verified'])->name('dashboard');
-
-//Route::middleware('auth')->group(function () {
-//    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-//});
-
-//require __DIR__.'/auth.php';

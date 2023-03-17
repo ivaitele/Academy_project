@@ -24,7 +24,7 @@
                 <a href="{{route('admin.events.index')}}">Renginiai</a>
             </li>
             <li class="{{$active == 'users' ? 'active' : ''}}">
-                <a href="{{route('admin.users.index')}}">Vartotojai</a>
+                <a href="{{route('users.index')}}">Vartotojai</a>
             </li>
             <li class="{{$active == 'categories' ? 'active' : ''}}">
                 <a href="{{route('categories.index')}}">Kategorijos</a>

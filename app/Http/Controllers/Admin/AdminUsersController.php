@@ -25,11 +25,6 @@ class AdminUsersController extends Controller
         return view('admin.users.index', compact('users', 'active'));
     }
 
-//    public function show(Event $event): View
-//    {
-//        return view('events.show', ['event' => $event]);
-//    }
-
     public function create()
     {
         $active = 'users';
@@ -49,7 +44,7 @@ class AdminUsersController extends Controller
         $user->password = Hash::make($request->password);
 
         $user->save();
-        return redirect()->route('admin.users.index');
+        return redirect()->route('users.index');
     }
 
     public function edit(User $user)
@@ -74,12 +69,12 @@ class AdminUsersController extends Controller
 
         $user->save();
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('users.index');
     }
 
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('admin.users.index');
+        return redirect()->route('users.index');
     }
 }

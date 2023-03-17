@@ -2,7 +2,6 @@
 
 @section('content')
 
-
     <div class="container">
         <h1>Vartotojai</h1>
         <div class="section">
@@ -12,7 +11,7 @@
             <div class="section__article">
                 <div class="section__sub-head">
                     <h3>Vartotojai</h3>
-                    <a class="btn success small" href="{{route('admin.users.create')}}">New User</a>
+                    <a class="btn success small" href="{{route('users.create')}}">New User</a>
                 </div>
 
 
@@ -33,7 +32,7 @@
                         <tr>
                             <th>{{$user->id}}</th>
                             <td>
-                                <h4><a href="{{route('admin.users.edit', $user->id)}}">{{$user->title}}</a></h4>
+                                <h4><a href="{{route('users.edit', $user->id)}}">{{$user->title}}</a></h4>
 
                                 <small>{{$user->first_name}} {{$user->last_name}}</small>
                                 <div class="email">{{$user->email}}</div>
@@ -48,12 +47,24 @@
                             </td>
                             <td class="action">
                                 <div>
-                                    <a href="{{route('admin.users.edit', $user->id)}}" class="btn small">Edit</a>
-                                    <form action="{{route('admin.users.delete', $user->id)}}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="small secondary">Delete</button>
-                                    </form>
+                                    <a href="{{route('users.edit', $user->id)}}" class="btn small">Edit</a>
+
+
+                                    <button onclick="openConfirmation('user-{{$user->id}}')" class="small secondary">Delete</button>
+
+                                    <div id="user-{{$user->id}}" class="overlay">
+                                        <h5>Are you sure?</h5>
+                                        <div class="overlay__actions">
+
+                                            <form action="{{route('users.destroy', $user->id)}}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="small secondary">Delete</button>
+                                            </form>
+
+                                            <button class="small" onclick="closeConfirmation('user-{{$user->id}}')">Cancel</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </td>
                         </tr>

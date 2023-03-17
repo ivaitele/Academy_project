@@ -42,8 +42,16 @@
                                     <a class="btn small" href="{{route(Auth::user()->role.'.event.show', $event)}}">Tickets</a>
 
                                     <a class="btn small" href="{{route(Auth::user()->role.'.event.edit', $event)}}">Edit</a>
-                                    <button class="secondary small">Delete</button>
+                                    <button class="secondary small" onclick="openConfirmation('event-{{$event->id}}')">Delete</button>
 
+                                    <div id="event-{{$event->id}}" class="overlay">
+                                        <h5>Are you sure?</h5>
+                                        <div class="overlay__actions">
+
+                                            <button class="secondary small">Delete</button>
+                                            <button class="small" onclick="closeConfirmation('event-{{$event->id}}')">Cancel</button>
+                                        </div>
+                                    </div>
                                 </div>
 
 

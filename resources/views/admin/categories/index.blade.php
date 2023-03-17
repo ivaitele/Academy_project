@@ -30,11 +30,23 @@
 
                                 <div class="price with-icon">
                                     <a class="btn small" href="{{route('categories.edit', $category)}}">Edit</a>
-                                    <form action="{{route('categories.destroy', $category->id)}}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                    <button class="secondary small">Delete</button>
-                                    </form>
+
+
+                                    <button onclick="openConfirmation('category-{{$category->id}}')" class="secondary small">Delete</button>
+
+                                    <div id="category-{{$category->id}}" class="overlay">
+                                        <h5>Are you sure?</h5>
+                                        <div class="overlay__actions">
+
+                                            <form action="{{route('categories.destroy', $category->id)}}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="secondary small">Delete</button>
+                                            </form>
+
+                                            <button class="small" onclick="closeConfirmation('category-{{$category->id}}')">Cancel</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </li>

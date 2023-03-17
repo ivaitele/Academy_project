@@ -19,7 +19,7 @@
     <header class="layout__header">
         <div class="container">
             <div>
-                <img src="/assets/logo1.png" alt="Tickets" />
+                <a href="{{route('home')}}"><img src="/assets/logo1.png" alt="Tickets" /></a>
             </div>
 
             <nav>
@@ -70,6 +70,7 @@
     <div class="layout__content">
 
         @if ($errors->any())
+        <div class="container">
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
@@ -77,6 +78,7 @@
                     @endforeach
                 </ul>
             </div>
+        </div>
         @endif
 
         @yield('content', 'Default content')
@@ -87,7 +89,7 @@
     <footer class="layout__footer">
         <div class="container">
             <div>
-                <img src="/assets/logo1.png" alt="Tickets" />
+                <a href="{{route('home')}}"> <img src="/assets/logo1.png" alt="Tickets" /></a>
                 <p>Renginiai ir pramogos</p>
             </div>
 
@@ -115,5 +117,18 @@
         </div>
     </footer>
 </div>
+
+<script>
+    const openConfirmation = (id) => {
+        const overlay = document.getElementById(id)
+        overlay.style.display = 'flex'
+    }
+
+    const closeConfirmation = (id) => {
+        const overlay = document.getElementById(id)
+        overlay.style.display = 'none'
+    }
+</script>
+
 </body>
 </html>

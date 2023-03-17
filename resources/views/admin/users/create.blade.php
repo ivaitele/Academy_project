@@ -11,7 +11,7 @@
             <div class="section__article">
                 <h3>New user</h3>
 
-                <form class="form" action="{{route('admin.users.store')}}" method="post" >
+                <form class="form" action="{{route('users.store')}}" method="post" >
                     @csrf
                     <div class="form__input">
                         <label>Email</label>

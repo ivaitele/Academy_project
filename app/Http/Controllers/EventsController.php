@@ -17,7 +17,7 @@ class EventsController extends Controller
             ->with(['category'])
             ->get();
 
-        return view('events.list', ['events' => $events, 'header' => 'Naujausi renginiai']);
+        return view('events.list', ['events' => $events, 'header' => 'Visi renginiai']);
     }
 
     public function archive(): View

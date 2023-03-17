@@ -9,7 +9,7 @@
             @include('users.menu')
 
             <div class="section__article">
-                Dashboard
+                Welcome
             </div>
         </div>
     </div>

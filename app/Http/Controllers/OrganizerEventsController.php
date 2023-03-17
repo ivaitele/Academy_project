@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\EventRequest;
 use App\Managers\FileManager;
 use App\Models\Event;
@@ -18,7 +17,7 @@ class OrganizerEventsController extends Controller
     public function index(): View
     {
         $user_id = Auth::user()->id;
-        $events = Event::query()->where('user_id', $user_id)->with(['category'])->get();
+        $events = Event::query()->where('user_id', $user_id)->get();
 
         return view('admin.events.index', ['active' => 'events', 'events' => $events]);
     }

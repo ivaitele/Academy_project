@@ -11,7 +11,7 @@
             <div class="section__article">
                 <h3>Edit user</h3>
 
-                <form class="form" action="{{route('admin.users.update', $user->id)}}" method="post" >
+                <form class="form" action="{{route('users.update', $user->id)}}" method="post" >
                     @method('put')
                     @csrf
                     <h4>{{$user->email}}</h4>
@@ -49,7 +49,7 @@
 
                     <div class="form__action">
                         <button type="submit">Update</button>
-                        <a class="btn secondary" href="{{route('admin.users.index')}}">Cancel</a>
+                        <a class="btn secondary" href="{{route('users.index')}}">Cancel</a>
                     </div>
                 </form>
             </div>

@@ -44,14 +44,17 @@ class CartController extends Controller
                 'nr' => $request->card_nr,
                 'end_date' => $request->card_end_date,
                 'svc' => $request->card_svc,
+                'events' => $events,
+                'cart' => $cart,
+                'token' => $request->_token
             ];
 
             //Perduodam mokejimo duomenys kad patvirtintu apmokejima
             $bankResponse = $this->cartManager->bankTransaction($data);
 
-            if (!($bankResponse->success)) {
+            if (!($bankResponse->success && $bankResponse->secure_code === $request->_token)) {
                 return redirect()->route('cart.payment')
-                    ->with('error', 'Korteles duomenys neteisingi ');
+                    ->with('error', 'Kortelės duomenys neteisingi');
             }
 
             //Po mokejimo patvirtinimo sukuriamas naujas uzsakymas
@@ -59,6 +62,7 @@ class CartController extends Controller
             $order->user_id = Auth::user()->id;
             $order->transaction_id = $bankResponse->transaction_id;
             $order->payment_method = $bankResponse->payment_method;
+            $order->grand_total = $bankResponse->total;
             $order->status = $bankResponse->status;
             $order->save();
 
