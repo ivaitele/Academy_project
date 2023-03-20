@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Auth\LoginRequest;
-
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\Order;
-use App\Models\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
@@ -39,12 +35,11 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $user->title = $request->title ?? $request->first_name .' '. $request->last_name;
-        $user->name = $request->name;
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->address = $request->address;
         $user->save();
 
-        return redirect()->route('user.profile');
+        return redirect()->route('user.profile')->with('success', 'Sėkmingai atnaujinta');
     }
 }

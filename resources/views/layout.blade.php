@@ -34,12 +34,12 @@
                     @endif
 
                     @guest
-                        <li><a href="{{route('auth.login')}}">Prisijungti</a></li>
+                        <li><a href="{{route('login')}}">Prisijungti</a></li>
                     @endguest
 
                     @auth
                         <li>
-                            <div class="user-menu">
+                            <div class="user-menu {{Auth::user()?->role}}">
                                 <div class="user-menu__avatar">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
                                         <path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
@@ -71,10 +71,10 @@
 
         @if ($errors->any())
         <div class="container">
-            <div class="alert alert-danger">
+            <div>
                 <ul>
                     @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
+                        <li class="alert alert-danger">{{ $error }}</li>
                     @endforeach
                 </ul>
             </div>
@@ -110,7 +110,7 @@
             <div>
                 <h4>Prenumeruoti naujienlaiškį</h4>
                 <div class="input">
-                    <input placeholder="Your email" />
+                    <input placeholder="El.paštas" />
                     <button>OK</button>
                 </div>
             </div>

@@ -25,7 +25,14 @@
 
                             <div class="event__content">
                                 <h4>{{$event->title}}</h4>
-                                <div>Kategorija: {{$event->category->title}}</div>
+                                <div>Kategorija: <b>{{$event->category->title}}</b></div>
+                                <div>Organizatorius: <b>{{$event->user->title}}</b></div>
+                                <div>
+                                    Bilietai parduoti: <b>{{$event->tickets_sold()}} / {{$event->tickets_available}}</b>
+                                    <div>
+                                        <progress max="{{$event->tickets_available}}" value="{{$event->tickets_sold()}}"></progress>
+                                    </div>
+                                </div>
 
                                 <div class="time with-icon">
                                     <x-icons.time />

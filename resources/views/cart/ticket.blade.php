@@ -10,7 +10,11 @@
 
             <x-ticket :ticket="$ticket" />
 
-            <button onclick="print()">Spausdinti</button>
+            <div class="with-icon">
+                <a href="{{route('user.tickets')}}">Atgal</a>
+                <button onclick="print()">Spausdinti</button>
+            </div>
+
             @else
                 <h1>Bilietas nerastas</h1>
             @endif

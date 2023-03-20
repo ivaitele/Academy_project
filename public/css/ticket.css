@@ -72,4 +72,22 @@
 }
 .ticket__right .qr img {
   width: 120px;
+}
+
+.order__header {
+  display: flex;
+  justify-content: space-between;
+  color: var(--grey-dark);
+  font-size: 14px;
+}
+.order__status {
+  background: var(--grey);
+  color: white;
+  font-size: 13px;
+  padding: 0.5em 1em;
+  border-radius: 50vh;
+}
+.order__grand-total {
+  text-align: right;
+  padding: 0.5em 1em;
 }/*# sourceMappingURL=ticket.css.map */

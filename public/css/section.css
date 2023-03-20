@@ -2,13 +2,6 @@
   display: flex;
   gap: 1em;
 }
-
-.alert-success {
-    background-color: rgba(227, 253, 235, 1);
-    border-color: rgba(38, 179, 3, 1);
-    color: rgba(60, 118, 61, 1);
-}
-
 .section__article {
   background: white;
   flex: 1;

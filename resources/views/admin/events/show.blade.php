@@ -49,7 +49,7 @@
                         <ul>
                             <li><b>Renginio trukmė:</b> {{$event->duration}}</li>
                             <li><b>Renginio tipas:</b> {{$event->category->title}}</li>
-                            <li><b>Organizatorius:</b> {{$event->organizer}}</li>
+                            <li><b>Organizatorius:</b>  {{$event->user->title}}, {{$event->user->address}}</li>
                             <li><b>Status:</b> {{$event->status}}</li>
                             <li><b>Vietos visos:</b> {{$event->tickets_available}}</li>
                             <li><b>Vietos likusios:</b> {{$event->tickets_left}}</li>

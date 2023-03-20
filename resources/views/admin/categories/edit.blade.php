@@ -24,17 +24,12 @@
                     </div>
                     <div class="form__input">
                         <label>Summary</label>
-                        <textarea rows="10" name="detail">{{$category->summary}}</textarea>
+                        <textarea rows="10" name="summary">{{$category->summary}}</textarea>
                     </div>
                     <div class="form__input">
                         <label>Image</label>
                         <input type="file" name="photo" />
                     </div>
-                    <div class="form__input">
-                        <label>Status</label>
-                        <input type="text" name="price" value="{{$category->status}}" />
-                    </div>
-
                     <div class="form__action">
                         <button type="submit">Update</button>
                     </div>

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->dateTime('start_date')->change();
             $table->dateTime('end_date')->change()->after('start_date');
             $table->string('location')->after('end_date');
-            $table->string('duration')->after('price');
-            $table->string('additional_info')->after('location');
+            $table->string('duration')->nullable()->after('price');
+            $table->string('additional_info')->nullable()->after('location');
             $table->string('organizer')->after('location');
         });
     }

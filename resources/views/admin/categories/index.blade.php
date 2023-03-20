@@ -13,7 +13,7 @@
 
                 <div class="section__sub-head">
                     <h3>Categories</h3>
-                    <a class="btn success" href="{{route('categories.create')}}">New Category</a>
+                    <a class="btn small success" href="{{route('categories.create')}}">New Category</a>
                 </div>
 
                 <ul>
@@ -26,7 +26,7 @@
 
                             <div class="event__content">
                                 <h4>{{$category->title}}</h4>
-                                <div>Category: {{$category->summary}}</div>
+                                <div>{{$category->summary}}</div>
 
                                 <div class="price with-icon">
                                     <a class="btn small" href="{{route('categories.edit', $category)}}">Edit</a>

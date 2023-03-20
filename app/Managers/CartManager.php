@@ -2,15 +2,30 @@
 
 namespace App\Managers;
 
+use App\Models\Event;
 use Ramsey\Uuid\Uuid;
 
 class BankResponse {};
 
 class CartManager
 {
+    public function getCart($request)
+    {
+        // Is sesijos gauname event_id ir quantity $cart = [5 => 2, 7 => 8]
+        return $request->session()->get('cart');
+    }
+
+    public function getEvents($cart)
+    {
+        // grazina masyva su event_id $ids = [5, 7]
+        $ids = array_keys($cart ?? []);
+
+        return Event::query()->whereIn('id', $ids)->get();
+    }
+
     //Imituojam banka
     private $nr = 1234123412341234;
-    private $name = 'ok ok';
+    private $name = 'Vardas Pavarde';
     private $end_date = '2023-11';
     private $svc = 123;
     private $money = 450;
@@ -23,7 +38,6 @@ class CartManager
         $svc = $data['svc'];
         $events = $data['events'];
         $cart = $data['cart'];
-        $secure_code = $data['token'];
         $total = 0;
 
         foreach ($events as $event)
@@ -34,10 +48,10 @@ class CartManager
 
         $response = new BankResponse();
         $response->success = false;
+        $response->status = 'Payment failed';
+
         $response->total = $total;
         $response->transaction_id = Uuid::uuid4();
-        $response->status = 'Payment failed';
-        $response->secure_code = $secure_code;
 
         //Tikrinam ar mokejimo duomenys yra teisingi
         if ($name == $this->name &&
@@ -47,9 +61,9 @@ class CartManager
             $total <= $this->money) {
 
             $response->payment_method = 'VISA';
-            $response->status = 'Payment completed';
 
             $response->success = true;
+            $response->status = 'Payment completed';
         }
 
         return $response;

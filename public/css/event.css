@@ -17,7 +17,7 @@
   padding: 2em 0;
 }
 .event.admin img {
-  width: 150px;
+  width: 160px;
 }
 .event.admin svg {
   width: 1em;
@@ -44,8 +44,9 @@
 .event__content {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 0.5em;
   flex: 1;
+  font-size: 14px;
 }
 .event__price {
   font-size: 45px;

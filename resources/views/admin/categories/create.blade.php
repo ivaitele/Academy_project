@@ -19,19 +19,15 @@
                     </div>
                     <div class="form__input">
                         <label>Slug</label>
-                        <textarea name="slug">{{old('slug')}}</textarea>
+                        <input type="text" name="slug" value="{{old('slug')}}" />
                     </div>
                     <div class="form__input">
                         <label>Summary</label>
-                        <input type="text" name="summary" value="{{old('summary')}}" />
+                        <textarea rows="10" name="summary">{{old('summary')}}</textarea>
                     </div>
                     <div class="form__input">
                         <label>Image</label>
                         <input type="file" name="photo" value="{{old('photo')}}" />
-                    </div>
-                    <div class="form__input">
-                        <label>Status</label>
-                        <input type="text" name="status" value="{{old('status')}}" />
                     </div>
                     <div class="form__action">
                         <button type="submit">Create</button>

@@ -40,6 +40,11 @@
                         <label>Adresas</label>
                         <input type="text" name="address" value="{{Auth::user()->address}}"/>
                     </div>
+                    @if(Session::has('success'))
+                        <div class="alert alert-success">
+                            {{Session::get('success')}}
+                        </div>
+                    @endif
                     <div class="form__action">
                         <button type="submit">Atnaujinti</button>
                     </div>

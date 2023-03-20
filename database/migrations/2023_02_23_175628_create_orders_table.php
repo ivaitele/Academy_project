@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->string('grand_total');
-            $table->string('phone');
-            $table->string('user_email');
+            $table->string('phone')->nullable();
+            $table->string('user_email')->nullable();
             $table->string('payment_method');
             $table->string('transaction_id');
             $table->string('status')->default("pending");

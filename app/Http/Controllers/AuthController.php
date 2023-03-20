@@ -35,7 +35,7 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('events.list');
+        return redirect()->route('login');
     }
 
     public function register(): View
@@ -55,6 +55,6 @@ class AuthController extends Controller
         $user->password = Hash::make($request->password);
 
         $user->save();
-        return redirect()->route('auth.login');
+        return redirect()->route('login');
     }
 }

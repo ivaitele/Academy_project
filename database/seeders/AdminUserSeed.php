@@ -16,27 +16,17 @@ class AdminUserSeed extends Seeder
      */
     public function run()
     {
-        $user = User::firstOrCreate(
+        User::firstOrCreate(
             [
                 'email' => 'admin@example.com',
             ],
             [
-                'name' => 'Admin',
+                'title' => 'Administratorius',
+                'first_name' => 'Admin',
+                'last_name' => 'Hello',
                 'password' => bcrypt('admin'),
             ]
         );
 
-        Person::updateOrCreate(
-            [
-                'user_id' => $user->id,
-                'email' => 'admin@email.com',
-            ],
-            [
-                'name' => 'Admin',
-                'surname' => 'Admin',
-                'personal_code' => '00000000000',
-                'phone' => '000000000',
-            ]
-        );
     }
 }

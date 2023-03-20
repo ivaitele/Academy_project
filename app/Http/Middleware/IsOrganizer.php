@@ -17,7 +17,7 @@ class IsOrganizer
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::user()->role !== 'organizer') {
-            return redirect()->route('auth.login');
+            return redirect()->route('login');
         }
 
         return $next($request);

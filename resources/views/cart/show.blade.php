@@ -28,7 +28,7 @@
 
                         <td>@php($total = $cart[$event->id] * $event->price)
                             @php($orderTotal += $total)
-                            ${{$total}}
+                            €{{$total}}
                         </td>
 
                         <td width="100">
@@ -44,7 +44,7 @@
             </table>
 
             <div class="cart-total">
-                Viso: <span>${{$orderTotal}}</span>
+                Viso: <span>€{{$orderTotal}}</span>
             </div>
 
             @if ($cart)
@@ -58,7 +58,7 @@
                 @endauth
 
                 @guest
-                    <a class="btn" href="{{route('auth.login')}}?redirect=cart.show">Login to continue</a>
+                    <a class="btn" href="{{route('login')}}?redirect=cart.show">Prisijungti</a>
                 @endguest
             </div>
 

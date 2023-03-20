@@ -37,7 +37,7 @@
             </form>
             <div class="center">
                 <h4>Turite paskyra?</h4>
-                <a href="{{route('auth.login')}}">Prisijungti</a>
+                <a href="{{route('login')}}">Prisijungti</a>
             </div>
         </div>
     </div>

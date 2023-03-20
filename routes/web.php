@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
-Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'onLogin'])->name('auth.onLogin');
 Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
 Route::post('/register', [AuthController::class, 'onRegister'])->name('auth.onRegister');
@@ -44,8 +44,8 @@ Route::get('/event/{event}', [EventsController::class, 'show'])->name('events.sh
 Route::post('/events/{event}/buy', [EventsController::class, 'add_to_cart'])->name('events.buy');
 
 Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
-Route::post('/cart', [CartController::class, 'onCheckout'])->name('cart.checkout');
-Route::get('/cart/payment', [CartController::class, 'payment'])->name('cart.payment');
+Route::post('/cart', [CartController::class, 'onCheckout'])->middleware('auth')->name('cart.checkout');
+Route::get('/cart/payment', [CartController::class, 'payment'])->middleware('auth')->name('cart.payment');
 
 Route::get('/ticket/{code}', [CartController::class, 'ticket'])->name('cart.ticket');
 

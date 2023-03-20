@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PaymentRequest;
 use App\Managers\CartManager;
-use App\Models\Event;
 use App\Models\Order;
 use App\Models\OrdersEvent;
 use Illuminate\Http\Request;
@@ -20,25 +19,26 @@ class CartController extends Controller
 
     public function show(Request $request): view
     {
-        $cart = $request->session()->get('cart');
-        // Is sesijos gauname event_id ir quantity $cart = [5 => 2, 7 => 8]
-
-        $ids = array_keys($cart ?? []);
-        // grazina masyva su event_id $ids = [5, 7]
-
-        $events = Event::query()->whereIn('id', $ids)->get();
+        $cart = $this->cartManager->getCart($request);
+        $events = $this->cartManager->getEvents($cart);
 
         return view ('cart.show', ['cart' => $cart, 'events' => $events]);
     }
 
+    public function payment(Request $request)
+    {
+        $cart = $this->cartManager->getCart($request);
+        $events = $this->cartManager->getEvents($cart);
+
+        return view ('cart.payment', ['cart' => $cart, 'events' => $events]);
+    }
+
     public function onCheckout(PaymentRequest $request)
     {
-        $cart = $request->session()->get('cart');
+        $cart = $this->cartManager->getCart($request);
 
         if ($cart) {
-            $ids = array_keys($cart ?? []);
-            $events = Event::query()->whereIn('id', $ids)->get();
-
+            $events = $this->cartManager->getEvents($cart);
             $data = [
                 'name' => $request->card_name,
                 'nr' => $request->card_nr,
@@ -46,13 +46,12 @@ class CartController extends Controller
                 'svc' => $request->card_svc,
                 'events' => $events,
                 'cart' => $cart,
-                'token' => $request->_token
             ];
 
             //Perduodam mokejimo duomenys kad patvirtintu apmokejima
             $bankResponse = $this->cartManager->bankTransaction($data);
 
-            if (!($bankResponse->success && $bankResponse->secure_code === $request->_token)) {
+            if (!$bankResponse->success) {
                 return redirect()->route('cart.payment')
                     ->with('error', 'Kortelės duomenys neteisingi');
             }
@@ -92,15 +91,5 @@ class CartController extends Controller
         $ticket = OrdersEvent::query()->where('code', $request)->first();
 
         return view ('cart.ticket', ['ticket' => $ticket]);
-    }
-
-    public function payment(Request $request) {
-
-        $cart = $request->session()->get('cart');
-        $ids = array_keys($cart ?? []);
-
-        $events = Event::query()->whereIn('id', $ids)->get();
-
-        return view ('cart.payment', ['cart' => $cart, 'events' => $events]);
     }
 }
