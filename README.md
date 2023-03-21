@@ -25,8 +25,6 @@ User portal
 - git clone https://github.com/ivaitele/Academy_project.git may_app
 - cd my_app
 
-- docker-compose build
-
 - docker-compose up -d
 - docker-compose exec <laravel.test> composer install
 - docker-compose exec <laravel.test> cp .env.example .env
